@@ -24,7 +24,8 @@ class CategoryPage extends React.Component{
     render() {
       const { category, selectedCurrency, selectedCurrencySymbol } = this.props;
 
-        return <div className="categoryPage" >
+      return <div className="categoryPage" >
+          
             <div className="categoryPage__header">
 
                {category.name}
@@ -38,7 +39,6 @@ class CategoryPage extends React.Component{
                     selectedCurrency={selectedCurrency} margin="2rem 1rem"></CategoryItem>
                 )
             }
-          
             </div>
            
         </div>

@@ -1,45 +1,72 @@
-               $--c-black :#1D1F22;
-               .category-item {
-                   position: relative;
-                   width: 40rem;
-                   height: 45rem;
-                   color: $--c-black;
-                   cursor: pointer;
-                   &__out-of-stock-overlay {
-                       width: 100%;
-                       height: 80%;
-                       position: absolute;
-                       top: 0;
-                       left: 0;
-                       background-color: white;
-                       opacity: 0.5;
-                       &__text {
-                           color: #8D8F9A;
+                   $--c-black :#1D1F22;
+                   .category-item {
+                       position: relative;
+                       width: 35rem;
+                       height: 45rem;
+                       color: $--c-black;
+                       cursor: pointer;
+                       padding: 0 1.6rem;
+                       &__out-of-stock-overlay {
+                           width: 100%;
+                           height: 100%;
                            position: absolute;
-                           top: 50%;
-                           left: 50%;
-                           transform: translate(-50%, -50%);
-                           text-transform: uppercase;
-                           font-size: 2.4rem;
-                           font-weight: 400;
-                           line-height: 3.8rem;
+                           top: 0;
+                           left: 0;
+                           background-color: white;
+                           opacity: 0.5;
+                           &__text {
+                               color: #8D8F9A;
+                               position: absolute;
+                               top: 50%;
+                               left: 50%;
+                               transform: translate(-50%, -50%);
+                               text-transform: uppercase;
+                               font-size: 2.4rem;
+                               font-weight: 400;
+                               line-height: 3.8rem;
+                           }
+                       }
+                       &__img {
+                           width: 100%;
+                           height: 80%;
+                           background-position: center;
+                           background-size: cover;
+                           margin-bottom: 2rem;
+                       }
+                       &__text {
+                           font-size: 1.8rem;
+                           &__description {
+                               font-weight: 300;
+                               margin-bottom: 1rem;
+                           }
+                           &__price {
+                               font-weight: 500;
+                           }
+                       }
+                       &__add-to-cart-btn {
+                           width: 5.2rem;
+                           height: 5.2rem;
+                           border-radius: 50%;
+                           background-color: #5ECE7B;
+                           position: absolute;
+                           bottom: 5rem;
+                           right: 5rem;
+                           display: flex;
+                           align-items: center;
+                           justify-content: center;
+                           visibility: hidden;
+                           opacity: 0;
+                           &__cart-icon {
+                               width: 3rem;
+                               height: 2rem;
+                           }
+                           transition: all .3s ease-in-out forwards;
+                       }
+                       &:hover &__add-to-cart-btn {
+                           visibility: visible;
+                           opacity: 1;
+                       }
+                       &:hover {
+                           box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
                        }
                    }
-                   &__img {
-                       width: 100%;
-                       height: 80%;
-                       background-position: center;
-                       background-size: cover;
-                       margin-bottom: 2rem;
-                   }
-                   &__text {
-                       font-size: 1.8rem;
-                       &__description {
-                           font-weight: 300;
-                           margin-bottom: 1rem;
-                       }
-                       &__price {
-                           font-weight: 500;
-                       }
-                   }
-               }

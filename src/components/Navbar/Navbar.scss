@@ -7,8 +7,8 @@ $--c-primary :#5ECE7B;
     height: 8rem;
     background-color: white;
     font-size: 1.6rem; //16px
+    overflow: hidden;
     &__section {
-        padding: 0 2rem;
         height: 100%;
         display: flex;
         align-items: center;
@@ -16,9 +16,6 @@ $--c-primary :#5ECE7B;
         &__right {
             align-self: flex-end;
             justify-content: flex-end;
-            &__item {
-                margin: 0 1rem;
-            }
             padding-right: 4rem;
             &__item {
                 margin: 0 1rem;
@@ -28,10 +25,16 @@ $--c-primary :#5ECE7B;
             align-self: flex-start;
             align-content: left;
             display: flex;
-            justify-content: space-around;
+            justify-content: flex-start;
             &__item {
                 position: relative;
                 transition: .3s ease-in-out forwards;
+                &:not(:first-of-type) {
+                    margin: 0 3rem;
+                }
+                &:first-of-type {
+                    margin-right: 3rem;
+                }
                 &:hover {
                     color: $--c-primary;
                     &::after {
@@ -61,16 +64,28 @@ $--c-primary :#5ECE7B;
         position: relative;
     }
     &__icon {
-        width: 2.5rem;
-        height: 2.5rem;
+        display: inline-block;
+        width: 2rem;
+        height: 2rem;
         fill: grey;
+        &__currency {
+            border: 1px solid red;
+        }
         &__small {
             width: 1.25rem;
-            height: 1.25ren;
+            height: 1.25rem;
         }
         &__chevron {
             position: absolute;
-            top: .5rem;
+            top: .85rem;
+            left: 2.5rem;
+            transition: all .2s ease-in-out;
+            &__rotate {
+                transform: rotate(180deg);
+            }
+        }
+        &__cart {
+            margin-left: 2.5rem;
         }
     }
 }

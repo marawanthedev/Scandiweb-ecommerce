@@ -1,9 +1,14 @@
 import React from "react"
 import Logo from "../../assets/svg/a-logo.svg"
 import CartIcon from "../../assets/svg/shopping-cart.svg"
-import DollarIcon from "../../assets/svg/$.svg"
+import USD from "../../assets/svg/USD.svg"
+import JPY from "../../assets/svg/JPY.svg"
+import GBP from "../../assets/svg/GBP.svg"
 import ChevronIcon from "../../assets/svg/chevron.svg"
 import "./Navbar.scss"
+import { connect } from "react-redux"
+import CurrencySwitcher from "../../components/CurrencySwitcher/CurrencySwitcher"
+import {toggleShowCurrencySwitcher,updateSelectedCurrency} from "../../redux/currency/currency_action"
 class Navbar extends React.Component{
 
 
@@ -13,11 +18,34 @@ class Navbar extends React.Component{
         super(props);
         this.state = {
             
+            
         }
     }
-    render() {
-        
 
+    handleNewCurrencySelection = (newCurrencyInfo) => {
+            this.props.updateSelectedCurrency(newCurrencyInfo)
+    }
+    render() {
+        const currencies = [
+            {
+            icon: USD,
+                text: "USD",
+                symbol:"$"
+            
+            },
+            {
+                icon: JPY,
+                text: "JPY",
+                symbol:"¥"
+            },
+            {
+                icon: GBP
+                ,text: "GBP",
+                symbol:"£"
+            }
+        ];  
+        const currentCurrency = currencies.filter((currency) => currency.text == this.props.selectedCurrency)[0];
+        const { showCurrencyswitcher, toggleShowCurrencySwitcher, } = this.props;
         return (
             
             <div className="navbar">
@@ -33,14 +61,18 @@ class Navbar extends React.Component{
                 </div>
                 <div className="navbar__section navbar__section__right">
 
+                    {showCurrencyswitcher ? <CurrencySwitcher currencies={currencies}
+                    currencySelectionUpdateCallBack={this.handleNewCurrencySelection}></CurrencySwitcher> : null}
                     <div className="navbar__item navbar__section__right__item">
-                        <img src={DollarIcon} alt="" className="navbar__icon " />
-                        <img src={ChevronIcon} alt="" className="navbar__icon 
-                          navbar__icon__small navbar__icon__chevron"/>
+                        <img src={currentCurrency.icon} alt="" className="navbar__icon navbar__icon__currencys" />
+                        <img src={ChevronIcon} alt=""
+                            
+                            className={`navbar__icon 
+                          navbar__icon__small navbar__icon__chevron ${showCurrencyswitcher ? "navbar__icon__chevron__rotate" : null}`} onClick={()=>toggleShowCurrencySwitcher()}/>
                     </div>
                       <div className="navbar__item navbar__section__right__item">
                        
-                        <img src={CartIcon} alt="" className="navbar__icon navbar__cart-icon"/>
+                        <img src={CartIcon} alt="" className="navbar__icon navbar__icon__cart"/>
                         
                     </div>
                 </div>
@@ -48,5 +80,13 @@ class Navbar extends React.Component{
         )
     }
 }
-
-export default Navbar;
+const mapStateToProps = ({ currencyReducer}) => ({
+    selectedCurrency: currencyReducer.selectedCurrency,
+    showCurrencyswitcher:currencyReducer.showCurrencyswitcher
+})
+const mapDispatchToProps = (dispatch) => ({
+    
+    toggleShowCurrencySwitcher: () => dispatch(toggleShowCurrencySwitcher()),
+    updateSelectedCurrency:(newCurrencySelection)=>dispatch(updateSelectedCurrency(newCurrencySelection))
+})
+export default connect(mapStateToProps,mapDispatchToProps)(Navbar);

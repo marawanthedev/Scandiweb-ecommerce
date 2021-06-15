@@ -23,26 +23,26 @@ const client = new ApolloClient({
     cache: new InMemoryCache()
 });
 
-client
-    .query({
-        query: gql `
-      query{
-category(input:{title:"clothes"}){
- name
-products{
-  name
-  inStock
-  prices{
-    currency
-    amount
-  }
-  gallery
-		}
-	}
-}
-    `
-    })
-    .then(result => console.log(result));
+// client
+//     .query({
+//         query: gql `
+//       query{
+// category(input:{title:"clothes"}){
+//  name
+// products{
+//   name
+//   inStock
+//   prices{
+//     currency
+//     amount
+//   }
+//   gallery
+// 		}
+// 	}
+// }
+//     `
+//     })
+//     .then(result => console.log(result));
 
 ReactDOM.render(
 

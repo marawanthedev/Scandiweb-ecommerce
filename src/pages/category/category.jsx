@@ -1,6 +1,8 @@
 import React from "react"
-
-import NavBar from "../../components/Navbar/Navbar"
+import  CategoryItem from "../../components/CategoryItem/CategoryItem"
+import "./Category.scss";
+import { connect } from "react-redux"
+import {getCategoryProducts} from "../../redux/category/category_action"
 class CategoryPage extends React.Component{
 
 
@@ -11,20 +13,48 @@ class CategoryPage extends React.Component{
 
         this.state = {
             
-
+        
         }
     }
 
+  componentDidMount() {
+    
+  }
+ 
     render() {
-        
+      const { category, selectedCurrency, selectedCurrencySymbol } = this.props;
 
-        return <div>
-            <NavBar></NavBar>
+        return <div className="categoryPage" >
+            <div className="categoryPage__header">
 
+               {category.name}
+            </div>
+            <div className="categoryPage__items-container">
+
+ {
+                category.items.map((item) =>
+                  <CategoryItem {...item}
+                    selectedCurrencySymbol={selectedCurrencySymbol}
+                    selectedCurrency={selectedCurrency} margin="2rem 1rem"></CategoryItem>
+                )
+            }
+          
+            </div>
+           
         </div>
     }
 
 }
 
+const mapStatToProps = ({ categoryReducer, currencyReducer }) => ({
+  
+  category: categoryReducer.category,
+  selectedCurrency: currencyReducer.selectedCurrency,
+   selectedCurrencySymbol:currencyReducer.selectedCurrencySymbol
+})
+const mapDispatchToProps = (dispatch) => ({
+  
+getCategoryProducts:(category)=>(dispatch(getCategoryProducts(category)))
+})
 
-export default CategoryPage;
+export default connect(mapStatToProps,mapDispatchToProps)(CategoryPage);

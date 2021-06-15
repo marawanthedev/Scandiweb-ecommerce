@@ -3,7 +3,7 @@ import { gql } from "@apollo/client"
 
 export const loadCategory = (category) => gql `
           query{
-    category(input:{title:"clothes"}){
+    category(input:{title:"tech"}){
      name
     products{
       name

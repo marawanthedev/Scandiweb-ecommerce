@@ -2,7 +2,8 @@ import React from "react"
 import  CategoryItem from "../../components/CategoryItem/CategoryItem"
 import "./Category.scss";
 import { connect } from "react-redux"
-import {getCategoryProducts} from "../../redux/category/category_action"
+import { getCategoryProducts } from "../../redux/category/category_action"
+import {AddCartItem,IncreaseItemQuantity,DecreaseItemQuantity,RemoveItem} from "../../redux/cart/cart.actions"
 class CategoryPage extends React.Component{
 
 
@@ -22,8 +23,8 @@ class CategoryPage extends React.Component{
   }
  
     render() {
-      const { category, selectedCurrency, selectedCurrencySymbol } = this.props;
-
+      const { category, selectedCurrency, selectedCurrencySymbol,AddCartItem,IncreaseItemQuantity,DecreaseItemQuantity,RemoveItem } = this.props;
+      const cartReduxCallBacks={AddCartItem,IncreaseItemQuantity,DecreaseItemQuantity,RemoveItem}
       return <div className="categoryPage" >
           
             <div className="categoryPage__header">
@@ -34,7 +35,7 @@ class CategoryPage extends React.Component{
 
  {
                 category.items.map((item) =>
-                  <CategoryItem {...item}
+                  <CategoryItem item={item}  cartReduxCallBacks={cartReduxCallBacks}
                     selectedCurrencySymbol={selectedCurrencySymbol}
                     selectedCurrency={selectedCurrency} margin="2rem 1rem"></CategoryItem>
                 )
@@ -54,7 +55,11 @@ const mapStatToProps = ({ categoryReducer, currencyReducer }) => ({
 })
 const mapDispatchToProps = (dispatch) => ({
   
-getCategoryProducts:(category)=>(dispatch(getCategoryProducts(category)))
+  getCategoryProducts: (category) => (dispatch(getCategoryProducts(category))),
+  AddCartItem:(cartItem)=>(dispatch(AddCartItem(cartItem))),
+  IncreaseItemQuantity:()=>(dispatch(IncreaseItemQuantity())),
+  DecreaseItemQuantity:()=>(dispatch(DecreaseItemQuantity())),
+  RemoveItem:()=>(dispatch(RemoveItem())),
 })
 
 export default connect(mapStatToProps,mapDispatchToProps)(CategoryPage);

@@ -17,7 +17,8 @@ class CategoryItem extends React.Component{
     }
 
     render() {
-        const { gallery, name, prices, margin, inStock, selectedCurrency, selectedCurrencySymbol } = this.props;
+        const { selectedCurrency, selectedCurrencySymbol, cartReduxCallBacks, item } = this.props;
+        const { gallery, name, prices, margin, inStock } = item;
         return (
             
                  <div className="category-item" style={{margin:`${margin}`}}>
@@ -27,9 +28,12 @@ class CategoryItem extends React.Component{
                     <div className="category-item__text__description">{name}</div>
                     <div className="category-item__text__price">{selectedCurrencySymbol}{prices.filter((price)=>price.currency==selectedCurrency)[0]['amount']}</div>
                 </div>
-                    <div className="category-item__add-to-cart-btn">
+                {inStock ? <div className="category-item__add-to-cart-btn" onClick={() => {
+                    console.log(item)
+                    cartReduxCallBacks.AddCartItem(item)
+                    }}>
                 <img className="category-item__add-to-cart-btn__cart-icon"src={cart} alt=""/>
-                </div>
+                </div>:null}
             </div>
         )
 

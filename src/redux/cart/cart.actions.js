@@ -1,8 +1,8 @@
 import { CartActionTypes } from "./cart.types";
 export const ToggleCartDropDown = () => ({
-  // **returning action object
-  type: CartActionTypes.TOGGLE_CART_DROP_DOWN,
-  payload: null,
+    // **returning action object
+    type: CartActionTypes.TOGGLE_CART_DROP_DOWN,
+    payload: null,
 });
 
 // needed actions for cart feature
@@ -13,21 +13,21 @@ export const ToggleCartDropDown = () => ({
 // 4-decrease item quantity
 
 export const AddCartItem = (cartItem) => ({
-  type: CartActionTypes.ADD_CART_ITEM,
-  payload: cartItem,
+    type: CartActionTypes.ADD_CART_ITEM,
+    payload: cartItem,
 });
 
-export const IncreaseItemQuantity = (itemId) => ({
-  type: CartActionTypes.INCREASE_ITEM_QUANTITY,
-  payload: itemId,
+export const IncreaseItemQuantity = (itemName) => ({
+    type: CartActionTypes.INCREASE_ITEM_QUANTITY,
+    payload: itemName,
 });
 
-export const DecreaseItemQuantity = (itemId) => ({
-  type: CartActionTypes.DECREASE_ITEM_QUANTITY,
-  payload: itemId,
+export const DecreaseItemQuantity = (itemName) => ({
+    type: CartActionTypes.DECREASE_ITEM_QUANTITY,
+    payload: itemName,
 });
 
-export const RemoveItem=(itemId)=>({
-  type:CartActionTypes.REMOVE_ITEM,
-  payload:itemId
+export const RemoveItem = (itemName) => ({
+    type: CartActionTypes.REMOVE_ITEM,
+    payload: itemName
 });

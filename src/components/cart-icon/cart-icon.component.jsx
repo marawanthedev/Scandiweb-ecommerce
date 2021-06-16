@@ -20,13 +20,9 @@ const CartIcon=({ToggleCartDropDown,itemCount})=>{
 const mapDispatchToProps=(dispatch)=>({
     ToggleCartDropDown:()=>dispatch(ToggleCartDropDown())
 });
-const mapStateToProps=({cartReducer:{cartItems}})=>({
 
-    itemCount:cartItems.length>0?cartItems.reduce((accumaltedQuantity,cartItem)=>accumaltedQuantity+cartItem.quantity,0):0,
-   
-});
 
-export default connect(mapStateToProps,mapDispatchToProps)(CartIcon);
+export default connect(null,mapDispatchToProps)(CartIcon);
 
 
 

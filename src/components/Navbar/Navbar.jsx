@@ -54,7 +54,7 @@ class Navbar extends React.Component{
             }
         ];  
         const currentCurrency = currencies.filter((currency) => currency.text == this.props.selectedCurrency)[0];
-        const { showCurrencyswitcher, toggleShowCurrencySwitcher, showCart,ToggleCartDropDown } = this.props;
+        const { showCurrencyswitcher, toggleShowCurrencySwitcher, showCart,ToggleCartDropDown,itemCount } = this.props;
         return (
             
             <div className="navbar">
@@ -82,7 +82,7 @@ class Navbar extends React.Component{
                     
                     {showCart ? <div>
                         <div className="cart-overlay" onClick={()=>ToggleCartDropDown()}></div>
-                        <CartDropDown></CartDropDown> 
+                        <CartDropDown itemCount={itemCount}></CartDropDown> 
                         </div>: null}
 
                     
@@ -95,7 +95,7 @@ class Navbar extends React.Component{
                     </div>
                       <div className="navbar__item navbar__section__right__item">
                        
-                     < CartIcon></CartIcon>
+                     < CartIcon itemCount={itemCount}></CartIcon>
                         
                     </div>
                       
@@ -109,10 +109,10 @@ class Navbar extends React.Component{
 const mapStateToProps = ({ currencyReducer,cartReducer}) => ({
     selectedCurrency: currencyReducer.selectedCurrency,
     showCurrencyswitcher: currencyReducer.showCurrencyswitcher,
-    showCart:cartReducer.showCart
+    showCart: cartReducer.showCart,
+    itemCount:cartReducer.cartItems.length>0?cartReducer.cartItems.reduce((accumaltedQuantity,cartItem)=>accumaltedQuantity+cartItem.quantity,0):0,
 })
 const mapDispatchToProps = (dispatch) => ({
-    
     toggleShowCurrencySwitcher: () => dispatch(toggleShowCurrencySwitcher()),
     updateSelectedCurrency: (newCurrencySelection) => dispatch(updateSelectedCurrency(newCurrencySelection)),
     ToggleCartDropDown:()=>dispatch(ToggleCartDropDown())

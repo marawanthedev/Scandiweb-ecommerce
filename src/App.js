@@ -2,7 +2,7 @@ import logo from './logo.svg';
 import './App.css';
 import CategoryPage from "./pages/Category/Category.jsx"
 import { Route } from "react-router-dom";
-import NavBar from "./components/Navbar/Navbar"
+import NavBar from "./container/Navbar/Navbar"
 
 function App() {
     return ( <

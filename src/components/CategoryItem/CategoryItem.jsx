@@ -1,22 +1,17 @@
-import React from "react";
-import "./CategoryItem.scss"
-import cart from "../../assets/svg/customizableShoppingCart.svg"
+import dependecies from  "./helpers/dependecies";
 
-class CategoryItem extends React.Component{
+
+class CategoryItem extends dependecies.React.Component{
 
 
     constructor (props) {
-        
         super(props);
-        
-
-            this.state = {
-                
-            }
-        
+        this.state = {}
     }
 
     render() {
+    const { cart } = dependecies;
+
         const { selectedCurrency, selectedCurrencySymbol, cartReduxCallBacks, item } = this.props;
         const { gallery, name, prices, margin, inStock } = item;
         return (

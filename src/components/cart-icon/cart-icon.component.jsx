@@ -1,12 +1,23 @@
-import React from 'react';
-import './cart-icon.styles.scss'
-import {ReactComponent as ShoppingIcon} from '../../assets/svg/shopping-cart.svg';
-import { connect } from "react-redux";
-import {ToggleCartDropDown} from "../../redux/cart/cart.actions"
+import dependecies from  "./helpers/dependecies";
 
-const CartIcon=({ToggleCartDropDown,itemCount})=>{
 
-        return (    
+class CartIcon extends dependecies.React.Component{
+
+
+    constructor(props){
+
+        super(props);
+        this.state = {
+            
+        }
+    }
+    render() {
+        
+
+        const { ToggleCartDropDown, itemCount } = this.props;
+     const { ShoppingIcon,React } = dependecies;
+
+         return (    
             <div className={`cart-icon`} onClick={()=> ToggleCartDropDown()}>
                 <ShoppingIcon className="shopping-icon"></ShoppingIcon>
                 <div className="item-count-circle">
@@ -14,15 +25,12 @@ const CartIcon=({ToggleCartDropDown,itemCount})=>{
                 </div>
             </div>
         )
+    }   
+    
 }
 
 
-const mapDispatchToProps=(dispatch)=>({
-    ToggleCartDropDown:()=>dispatch(ToggleCartDropDown())
-});
-
-
-export default connect(null,mapDispatchToProps)(CartIcon);
+export default CartIcon
 
 
 

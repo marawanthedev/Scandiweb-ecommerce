@@ -1,17 +1,27 @@
-import React from "react";
-import "./cart-drop-down-items.styles.scss";
 
-import Plus from "../../assets/svg/Plus.svg";
-import Minus from "../../assets/svg/Minus.svg"
-// make sure that you are destructing the right props names
-// typescript is needed :)
-// fucking action has to be included as  a prop
-// fuck off once again    
-export const CartItem=({gallery,name,quantity,DecreaseItemQuantity,IncreaseItemQuantity,prices,selectedCurrency,selectedCurrencySymbol})=>{
 
+import dependecies from  "./helpers/dependcies";
+
+
+
+class CartItem extends dependecies.React.Component{
+
+
+    constructor (props) {
+        
+        super(props);
+
+        this.state = {
+            
+        }
+    }
+    render() {
+    const {Plus,React,Minus } = dependecies;
     const sizes=['S','M','L']
-  
-    return(
+    const { gallery, name, quantity, DecreaseItemQuantity, IncreaseItemQuantity, prices, selectedCurrency, selectedCurrencySymbol } = this.props;
+
+      
+        return(
 
         <div className="cart-item" key={name} >
             <div className="cart-item__content">
@@ -30,7 +40,7 @@ export const CartItem=({gallery,name,quantity,DecreaseItemQuantity,IncreaseItemQ
                         {
                             sizes.map((size) => {
                             
-                                return(<button className="cart-item__content__btn cart-item__content-size-button">
+                                return(<button className="cart-item__content__btn cart-item__content-size-button cart-item__content__size-buttons-container__btn">
                             {size}
                         </button>)
                             })
@@ -40,12 +50,12 @@ export const CartItem=({gallery,name,quantity,DecreaseItemQuantity,IncreaseItemQ
                </div>
                 
                 <div className="cart-item__content__quantity-buttons-container">
-                    <button className="cart-item__content__btn cart-item__content__btn__plus" onClick={()=>IncreaseItemQuantity(name)}>
-                        <img src={Plus} alt=""/>
+                        <button className="cart-item__content__btn cart-item__content__btn__plus" onClick={() => IncreaseItemQuantity(name)}>
+                            <div  className="cart-item__content__btn__icon" style={{backgroundImage:`url(${Plus})`,backgroundPosition:"center",backgroundSize:"cover",width:"100%",height:"100%"}}></div>
                     </button>
                     <span className="cart-item__content__quantity">{quantity}</span>
-                    <button className="cart-item__content__btn cart-item__content__btn__plus" onClick={() => DecreaseItemQuantity(name)}>
-                        <img src={Minus} alt="" />
+                    <button className="cart-item__content__btn cart-item__content__btn__minus" onClick={() => DecreaseItemQuantity(name)}>
+                         <div className="cart-item__content__btn__icon" style={{backgroundImage:`url(${Minus})`,backgroundPosition:"center",backgroundSize:"cover",width:"100%",height:"100%"}}></div>
                     </button>
                     </div>
             </div>
@@ -54,9 +64,8 @@ export const CartItem=({gallery,name,quantity,DecreaseItemQuantity,IncreaseItemQ
         </div>
 
     )
+    }
 }
-
-
 
 
 

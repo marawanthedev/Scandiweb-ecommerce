@@ -18,8 +18,7 @@ const cartReducer = (state = INITIAL_STATE, action) => {
             {
                 return {
                     ...state,
-                    // set the state cart items to action payload
-                    // sending the currentCart items and the action.payload is the newely added one
+
                     cartItems: addCartItemUtil(state.cartItems, action.payload),
                 };
             }

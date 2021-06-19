@@ -191,7 +191,6 @@ const categoryReducer = (state = initState, action) => {
 
         case "load":
             {
-
                 return {
                     ...state
                 }

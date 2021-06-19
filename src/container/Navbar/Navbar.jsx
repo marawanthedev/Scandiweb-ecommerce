@@ -1,20 +1,10 @@
-import React from "react"
-import Logo from "../../assets/svg/a-logo.svg"
 
-import USD from "../../assets/svg/USD.svg"
-import JPY from "../../assets/svg/JPY.svg"
-import GBP from "../../assets/svg/GBP.svg"
-import ChevronIcon from "../../assets/svg/chevron.svg"
-import "./Navbar.scss"
-import { connect } from "react-redux"
 import CurrencySwitcher from "../../components/CurrencySwitcher/CurrencySwitcher"
-import  CartIcon from"../cart-icon/cart-icon.component"
 import { toggleShowCurrencySwitcher, updateSelectedCurrency } from "../../redux/currency/currency_action"
 import { ToggleCartDropDown } from "../../redux/cart/cart.actions";
-import CartDropDown from "../cart-dropdown/cart-dropdown.component";
-import Zoom from 'react-reveal/Zoom'
-import Bounce from 'react-reveal/Bounce'
-class Navbar extends React.Component{
+import dependecies from "./helpers/dependencies"
+
+class Navbar extends dependecies.React.Component{
 
 
 
@@ -35,6 +25,8 @@ class Navbar extends React.Component{
                         currencySelectionUpdateCallBack={this.handleNewCurrencySelection}></CurrencySwitcher> : null
     }
     render() {
+        const {React,Logo,USD,JPY,GBP,ChevronIcon,Zoom,Bounce,CartIcon,CartDropDown}=dependecies
+
         const currencies = [
             {
             icon: USD,
@@ -54,7 +46,7 @@ class Navbar extends React.Component{
             }
         ];  
         const currentCurrency = currencies.filter((currency) => currency.text == this.props.selectedCurrency)[0];
-        const { showCurrencyswitcher, toggleShowCurrencySwitcher, showCart,ToggleCartDropDown,itemCount } = this.props;
+        const { showCurrencyswitcher, toggleShowCurrencySwitcher, showCart, ToggleCartDropDown, itemCount } = this.props;
         return (
             
             <div className="navbar">
@@ -95,7 +87,7 @@ class Navbar extends React.Component{
                     </div>
                       <div className="navbar__item navbar__section__right__item">
                        
-                     < CartIcon itemCount={itemCount}></CartIcon>
+                     < CartIcon itemCount={itemCount} ToggleCartDropDown={ToggleCartDropDown}></CartIcon>
                         
                     </div>
                       
@@ -110,11 +102,13 @@ const mapStateToProps = ({ currencyReducer,cartReducer}) => ({
     selectedCurrency: currencyReducer.selectedCurrency,
     showCurrencyswitcher: currencyReducer.showCurrencyswitcher,
     showCart: cartReducer.showCart,
-    itemCount:cartReducer.cartItems.length>0?cartReducer.cartItems.reduce((accumaltedQuantity,cartItem)=>accumaltedQuantity+cartItem.quantity,0):0,
+    itemCount: cartReducer.cartItems.length > 0 ? cartReducer.cartItems.reduce((accumaltedQuantity, cartItem) => accumaltedQuantity + cartItem.quantity, 0) : 0,
+    
+
 })
 const mapDispatchToProps = (dispatch) => ({
     toggleShowCurrencySwitcher: () => dispatch(toggleShowCurrencySwitcher()),
     updateSelectedCurrency: (newCurrencySelection) => dispatch(updateSelectedCurrency(newCurrencySelection)),
     ToggleCartDropDown:()=>dispatch(ToggleCartDropDown())
 })
-export default connect(mapStateToProps,mapDispatchToProps)(Navbar);
+export default dependecies.connect(mapStateToProps,mapDispatchToProps)(Navbar);

@@ -1,28 +1,38 @@
 
-import React from "react";
-import "./cart-dropdown.styles.scss";
-import {connect} from "react-redux";
-import {CartItem} from "../cart-drop-down-items/cart-drop-down-items.component"
-import {DecreaseItemQuantity,IncreaseItemQuantity,ToggleCartDropDown} from "../../redux/cart/cart.actions";
-import {withRouter} from "react-router-dom";
-// dynamically added components 
-// can not not start a new redux connection
-// so we need to pass the method to the dynamic component
-import Zoom from 'react-reveal/Zoom'
+import  {dependecies} from "./helpers/dependencies.js"
+import {DecreaseItemQuantity,IncreaseItemQuantity,ToggleCartDropDown} from "./helpers/dependencies.js";
 
-const CartDropDown=({cartItems,DecreaseItemQuantity,IncreaseItemQuantity,selectedCurrency,selectedCurrencySymbol,itemCount})=>{
 
-    return(
+class CartDropDown extends dependecies.React.Component {
+
+    constructor (props) {
+        super(props);
+        this.state = {}
+    }
+
+
+    
+    render() {
+        const { CartItem,Zoom } = dependecies;
+        const { cartItems, DecreaseItemQuantity, IncreaseItemQuantity, selectedCurrency, selectedCurrencySymbol, itemCount, totalPrice } = this.props;
+return(
       
         <Zoom><div className="cart-dropdown ">
             <div className="cart-dropdown__items-count-container">
                 My Bag. <span className="cart-dropdown__items-count">{itemCount} items</span>
             </div>
         <ul className="cart-items">
-        {cartItems.length>0?cartItems.map(({...cartData},index)=>{
+            {cartItems.length > 0 ? cartItems.map(({ ...cartData }, index) => {
+            
             return <CartItem   key={index} selectedCurrency={selectedCurrency} selectedCurrencySymbol={selectedCurrencySymbol} DecreaseItemQuantity={DecreaseItemQuantity} IncreaseItemQuantity={IncreaseItemQuantity}    {...cartData}></CartItem>
         }):null}
-        </ul>
+            </ul>
+            <div className="cart-dropdown__total-price">
+
+                <span>Total</span>
+            <span>{totalPrice}{selectedCurrencySymbol}</span>
+
+            </div>
             <div className="buttons-container">
           
                 <button className="buttons-container__button buttons-container__button__viewbag">
@@ -35,14 +45,21 @@ const CartDropDown=({cartItems,DecreaseItemQuantity,IncreaseItemQuantity,selecte
         </div></Zoom>
         
     );
+    }
 }
+
 
 
 const mapStateToProps=({cartReducer,currencyReducer})=>({
     showCart: cartReducer.showCart,
     cartItems: cartReducer.cartItems,
-     selectedCurrency: currencyReducer.selectedCurrency,
+    selectedCurrency: currencyReducer.selectedCurrency,
     selectedCurrencySymbol: currencyReducer.selectedCurrencySymbol,
+    totalPrice: cartReducer.cartItems.length > 0 ? cartReducer.cartItems.reduce((accumaltedPrice, cartItem) => (accumaltedPrice + (
+        Math.round( ( cartItem.quantity*
+       cartItem.prices.filter((price) => price.currency == currencyReducer.selectedCurrency)[0]['amount']))
+   )), 0) : 0,
+   
 
 });
 const mapDispatchToProps=(dispatch)=>({
@@ -52,4 +69,4 @@ const mapDispatchToProps=(dispatch)=>({
 });
 
 
-export default  connect(mapStateToProps,mapDispatchToProps)(CartDropDown);
+export default  dependecies.connect(mapStateToProps,mapDispatchToProps)(CartDropDown);

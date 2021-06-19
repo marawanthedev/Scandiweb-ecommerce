@@ -29,6 +29,9 @@ $--c-primary :#5ECE7B;
             &__item {
                 position: relative;
                 transition: .3s ease-in-out forwards;
+                &::first-letter {
+                    text-transform: uppercase;
+                }
                 &:not(:first-of-type) {
                     margin: 0 3rem;
                 }

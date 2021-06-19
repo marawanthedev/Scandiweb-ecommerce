@@ -2,8 +2,9 @@
 import CurrencySwitcher from "../../components/CurrencySwitcher/CurrencySwitcher"
 import { toggleShowCurrencySwitcher, updateSelectedCurrency } from "../../redux/currency/currency_action"
 import { ToggleCartDropDown } from "../../redux/cart/cart.actions";
+import {getProducts,updateCategory} from "../../redux/category/category_action"
 import dependecies from "./helpers/dependencies"
-
+import category from "../../pages/Category/Category";
 class Navbar extends dependecies.React.Component{
 
 
@@ -11,10 +12,7 @@ class Navbar extends dependecies.React.Component{
     constructor (props) {
         
         super(props);
-        this.state = {
-            
-            
-        }
+        this.state = {}
     }
 
     handleNewCurrencySelection = (newCurrencyInfo) => {
@@ -24,9 +22,19 @@ class Navbar extends dependecies.React.Component{
         return this.props.showCurrencyswitcher ? <CurrencySwitcher currencies={currencies}
                         currencySelectionUpdateCallBack={this.handleNewCurrencySelection}></CurrencySwitcher> : null
     }
+   componentWillMount() {
+    this.props.getProducts()
+    }
     render() {
         const {React,Logo,USD,JPY,GBP,ChevronIcon,Zoom,Bounce,CartIcon,CartDropDown}=dependecies
+        const { products } = this.props;
 
+        if (products) {
+            products.forEach((product)=>product)
+        }
+        else {
+            
+        }
         const currencies = [
             {
             icon: USD,
@@ -46,18 +54,18 @@ class Navbar extends dependecies.React.Component{
             }
         ];  
         const currentCurrency = currencies.filter((currency) => currency.text == this.props.selectedCurrency)[0];
-        const { showCurrencyswitcher, toggleShowCurrencySwitcher, showCart, ToggleCartDropDown, itemCount } = this.props;
+        const { showCurrencyswitcher, toggleShowCurrencySwitcher, showCart, ToggleCartDropDown, itemCount,categories,updateCategory } = this.props;
         return (
             
-            <div className="navbar">
+            <div className="navbar" >
             
 
                 <Zoom right cascade>
                 <div className="navbar__section navbar__section__left">
 
-                        <div className="navbar__item navbar__section__left__item">Women</div>
-                        <div className="navbar__item navbar__section__left__item">MEN</div>
-                        <div className="navbar__item navbar__section__left__item">KIDS</div>
+                        {categories ? categories.map((category) =>
+                            <div  onClick={()=>updateCategory(category)} className="navbar__item navbar__section__left__item" >{category}</div>):null}
+                      
                     </div>
                 </Zoom>
                     
@@ -98,17 +106,20 @@ class Navbar extends dependecies.React.Component{
         )
     }
 }
-const mapStateToProps = ({ currencyReducer,cartReducer}) => ({
+const mapStateToProps = ({ currencyReducer,cartReducer,categoryReducer}) => ({
     selectedCurrency: currencyReducer.selectedCurrency,
     showCurrencyswitcher: currencyReducer.showCurrencyswitcher,
     showCart: cartReducer.showCart,
     itemCount: cartReducer.cartItems.length > 0 ? cartReducer.cartItems.reduce((accumaltedQuantity, cartItem) => accumaltedQuantity + cartItem.quantity, 0) : 0,
-    
-
+    products: categoryReducer.products,
+    categories: categoryReducer.categories
 })
 const mapDispatchToProps = (dispatch) => ({
     toggleShowCurrencySwitcher: () => dispatch(toggleShowCurrencySwitcher()),
     updateSelectedCurrency: (newCurrencySelection) => dispatch(updateSelectedCurrency(newCurrencySelection)),
-    ToggleCartDropDown:()=>dispatch(ToggleCartDropDown())
+    ToggleCartDropDown: () => dispatch(ToggleCartDropDown()),
+    getProducts: () => (dispatch(getProducts())),
+    updateCategory:(category)=>(dispatch(updateCategory(category)))
+    
 })
 export default dependecies.connect(mapStateToProps,mapDispatchToProps)(Navbar);

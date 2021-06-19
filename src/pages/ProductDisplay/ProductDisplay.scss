@@ -1,0 +1,30 @@
+.productDisplayPage {
+    width: 100%;
+    height: 60rem;
+    border: 1px solid black;
+    margin-top: 4rem;
+    display: flex;
+    &__left-side,
+    &__right-side {
+        height: 100%;
+    }
+    &__left-side {
+        width: 55%;
+        display: flex;
+        &__images-gallery {
+            width: 25%;
+            height: 40rem;
+            background-color: wheat;
+        }
+        &__selected-image-container {
+            background-color: blue;
+            height: 100%;
+            width: 75%;
+        }
+    }
+    &__right-side {
+        width: 45%;
+        border: 1px solid black;
+        background-color: red;
+    }
+}

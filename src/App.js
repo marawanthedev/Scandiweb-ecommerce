@@ -1,8 +1,9 @@
 import logo from './logo.svg';
 import './App.css';
-import CategoryPage from "./pages/Category/Category.jsx"
+import CategoryPage from "./pages/Category/Category"
 import { Route } from "react-router-dom";
-import NavBar from "./container/Navbar/Navbar"
+import NavBar from "./container/Navbar/Navbar";
+import ProductDisplayPage from "./pages/ProductDisplay/ProductDisplay"
 
 function App() {
     return ( <

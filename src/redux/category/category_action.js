@@ -1,18 +1,34 @@
-import { loadCategory } from "../../Graphql/Queries"
 import { useQuery } from "@apollo/client";
 import { useEffect } from "react";
+import client from "../../graphQl/server"
+import { GET_PORDUCTS } from "../../graphQl/Category/category_queries"
+import { CategoryActionTypes } from "./category_types"
 
-export const getCategoryProducts = (category) => {
+export const getProducts = () => {
 
     return (dispatch) => {
-        dispatch(categoriesLoaded())
+
+        client
+            .query({
+                query: GET_PORDUCTS
+            }).then(result => {
+
+                dispatch(productsLoaded(result.data))
+            })
+
     }
-
-
 }
-export const categoriesLoaded = () =>
+
+export const updateCategory = (category) => ({
+
+    type: CategoryActionTypes.UPDATE_CATEGORY,
+    payload: category
+
+
+})
+export const productsLoaded = (productsData) =>
     ({
-        type: "load",
-        payload: null
+        type: CategoryActionTypes.PRODCUTS_LOADED,
+        payload: productsData
 
     })

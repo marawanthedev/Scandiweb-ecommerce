@@ -2,8 +2,9 @@ import React from "react"
 import  CategoryItem from "../../components/CategoryItem/CategoryItem"
 import "./Category.scss";
 import { connect } from "react-redux"
-import { getCategoryProducts } from "../../redux/category/category_action"
-import {AddCartItem,IncreaseItemQuantity,DecreaseItemQuantity,RemoveItem} from "../../redux/cart/cart.actions"
+import { AddCartItem, IncreaseItemQuantity, DecreaseItemQuantity, RemoveItem } from "../../redux/cart/cart.actions"
+import {getProducts} from "../../redux/category/category_action"
+
 class CategoryPage extends React.Component{
 
 
@@ -12,54 +13,50 @@ class CategoryPage extends React.Component{
         
         super(props);
 
-        this.state = {
-            
-        
-        }
+       
     }
-
-  componentDidMount() {
-    
-  }
+  componentWillMount() {
+    this.props.getProducts()
+    }
  
     render() {
-      const { category, selectedCurrency, selectedCurrencySymbol,AddCartItem,IncreaseItemQuantity,DecreaseItemQuantity,RemoveItem } = this.props;
-      const cartReduxCallBacks={AddCartItem,IncreaseItemQuantity,DecreaseItemQuantity,RemoveItem}
-      return <div className="categoryPage" >
-          
+      const {products, selectedCurrency, selectedCurrencySymbol,AddCartItem,IncreaseItemQuantity,DecreaseItemQuantity,RemoveItem , activeCategory} = this.props;
+      const cartReduxCallBacks = { AddCartItem, IncreaseItemQuantity, DecreaseItemQuantity, RemoveItem }
+    
+      return (
+         <div className="categoryPage" >
             <div className="categoryPage__header">
-
-               {category.name}
-            </div>
-            <div className="categoryPage__items-container">
-
- {
-                category.items.map((item) =>
+               {activeCategory}
+          </div>
+ <div className="categoryPage__items-container">
+         {   products?products[activeCategory].map((item) =>
                   <CategoryItem item={item}  cartReduxCallBacks={cartReduxCallBacks}
-                    selectedCurrencySymbol={selectedCurrencySymbol}
-                    selectedCurrency={selectedCurrency} margin="2rem 1rem"></CategoryItem>
-                )
-            }
-            </div>
+                  selectedCurrencySymbol={selectedCurrencySymbol}
+                  selectedCurrency={selectedCurrency} margin="2rem 1rem"></CategoryItem>
+                  ):null}
+          
+                  </div>
            
         </div>
+      )
     }
 
 }
 
 const mapStatToProps = ({ categoryReducer, currencyReducer }) => ({
   
-  category: categoryReducer.category,
+  products: categoryReducer.products,
   selectedCurrency: currencyReducer.selectedCurrency,
-   selectedCurrencySymbol:currencyReducer.selectedCurrencySymbol
+  selectedCurrencySymbol: currencyReducer.selectedCurrencySymbol,
+   activeCategory:categoryReducer.activeCategory
 })
 const mapDispatchToProps = (dispatch) => ({
   
-  getCategoryProducts: (category) => (dispatch(getCategoryProducts(category))),
   AddCartItem:(cartItem)=>(dispatch(AddCartItem(cartItem))),
   IncreaseItemQuantity:()=>(dispatch(IncreaseItemQuantity())),
   DecreaseItemQuantity:()=>(dispatch(DecreaseItemQuantity())),
-  RemoveItem:()=>(dispatch(RemoveItem())),
+  RemoveItem: () => (dispatch(RemoveItem())),
+  getProducts: ()=>  (dispatch(getProducts()))
 })
 
 export default connect(mapStatToProps,mapDispatchToProps)(CategoryPage);

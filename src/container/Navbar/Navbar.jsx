@@ -73,7 +73,7 @@ class Navbar extends dependecies.React.Component{
                     
                 <Bounce up >
                      <div className="navbar__section navbar__section__middle">
-                    <div className="navbar__item navbar__middle-section__logo-container"> <img src={Logo} alt="" className="navbar__middle-section__logo__img"/> </div>
+                    <div className="navbar__item navbar__middle-section__logo-container"> <img src={Logo} alt="" className="navbar__middle__logo__img"/> </div>
                 </div>
                </Bounce>
                        <div className="navbar__section navbar__section__right">

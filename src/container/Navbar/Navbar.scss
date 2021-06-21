@@ -17,6 +17,9 @@ $--c-primary :#5ECE7B;
             align-self: flex-end;
             justify-content: flex-end;
             padding-right: 4rem;
+            @media only screen and (max-width: 400px) {
+                padding-right: 1rem;
+            }
             &__item {
                 margin: 0 1rem;
             }
@@ -34,9 +37,15 @@ $--c-primary :#5ECE7B;
                 }
                 &:not(:first-of-type) {
                     margin: 0 3rem;
+                    @media only screen and (max-width: 400px) {
+                        margin: 0 1.5rem;
+                    }
                 }
                 &:first-of-type {
                     margin-right: 3rem;
+                    @media only screen and (max-width: 400px) {
+                        margin-right: 1.5rem;
+                    }
                 }
                 &:hover {
                     color: $--c-primary;
@@ -60,6 +69,7 @@ $--c-primary :#5ECE7B;
         }
         &__middle {
             justify-content: center;
+           
         }
     }
     &__item {

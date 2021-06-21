@@ -1,11 +1,11 @@
 import { CategoryActionTypes } from "./category_types";
-import { CategorizeProducts, divideCategories } from "./category.util"
+import { CategorizeProducts, divideCategories, } from "./category.util"
 const initState = {
 
 
     products: null,
     activeCategory: "tech",
-    categories: []
+    categories: [],
 
 }
 const categoryReducer = (state = initState, action) => {
@@ -30,6 +30,8 @@ const categoryReducer = (state = initState, action) => {
                     activeCategory: action.payload
                 }
             }
+
+
 
 
     }

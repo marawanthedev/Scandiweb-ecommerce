@@ -4,6 +4,7 @@ import CategoryPage from "./pages/Category/Category"
 import { Route } from "react-router-dom";
 import NavBar from "./container/Navbar/Navbar";
 import ProductDisplayPage from "./pages/ProductDisplay/ProductDisplay"
+import CartPage from "./pages/Cart/Cart.jsx"
 
 function App() {
     return ( <
@@ -12,8 +13,16 @@ function App() {
         NavBar > < /NavBar>
 
         <
-        Route path = "/"
+        Route exact path = "/"
         component = { CategoryPage } >
+        <
+        /Route> <
+        Route path = "/product_display_page"
+        component = { ProductDisplayPage } >
+        <
+        /Route> <
+        Route path = "/cart"
+        component = { CartPage } >
         <
         /Route>
 

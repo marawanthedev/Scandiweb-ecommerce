@@ -10,6 +10,7 @@ import { connect } from "react-redux"
 import CartIcon from "../../../components/cart-icon/cart-icon.component"
 import CartDropDown from "../../cart-dropdown/cart-dropdown.component";
 import "../Navbar.scss"
+import { Link } from "react-router-dom";
 
 const dependecies = {
 
@@ -23,6 +24,7 @@ const dependecies = {
     Bounce,
     connect,
     CartIcon,
-    CartDropDown
+    CartDropDown,
+    Link
 }
 export default dependecies;

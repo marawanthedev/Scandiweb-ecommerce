@@ -10,6 +10,13 @@ export const AddCartItem = (cartItem) => ({
     type: CartActionTypes.ADD_CART_ITEM,
     payload: cartItem,
 });
+export const addAttributeSelectionsIndex = (itemName, attributeIndex, attributeSelectionIndex) => ({
+
+    type: CartActionTypes.ADD_ATTRIBUTE_SELECTION_INDEX,
+    attributeIndex,
+    itemName,
+    attributeSelectionIndex
+})
 
 export const IncreaseItemQuantity = (itemName) => ({
     type: CartActionTypes.INCREASE_ITEM_QUANTITY,

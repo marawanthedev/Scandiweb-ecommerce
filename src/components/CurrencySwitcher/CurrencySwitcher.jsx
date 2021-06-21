@@ -1,5 +1,5 @@
 import React from "react"
-import Zoom from 'react-reveal/Fade'
+import Fade from 'react-reveal/Fade'
 import "./CurrencySwitcher.scss"
 class CurrencySwitcher extends React.Component{
 
@@ -16,7 +16,7 @@ class CurrencySwitcher extends React.Component{
         const { currencies,currencySelectionUpdateCallBack } = this.props;
         return (
             
-            <Zoom>
+            <Fade>
                 <div className="currency-switcher-container">
                 {currencies.map((currency,index) => {
                     
@@ -30,7 +30,7 @@ class CurrencySwitcher extends React.Component{
                     </div>
                 })}
             </div>
-            </Zoom>
+            </Fade>
         )
     }
 

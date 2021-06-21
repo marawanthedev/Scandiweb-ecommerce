@@ -19,6 +19,7 @@ export const getProducts = () => {
     }
 }
 
+
 export const updateCategory = (category) => ({
 
     type: CategoryActionTypes.UPDATE_CATEGORY,

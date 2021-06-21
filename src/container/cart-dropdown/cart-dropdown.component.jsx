@@ -13,7 +13,7 @@ class CartDropDown extends dependecies.React.Component {
 
     
     render() {
-        const { CartItem,Zoom } = dependecies;
+        const { CartItem,Zoom,Link } = dependecies;
         const { cartItems, DecreaseItemQuantity, IncreaseItemQuantity, selectedCurrency, selectedCurrencySymbol, itemCount, totalPrice } = this.props;
 return(
       
@@ -35,9 +35,10 @@ return(
             </div>
             <div className="buttons-container">
           
-                <button className="buttons-container__button buttons-container__button__viewbag">
+            <Link to="/cart" style={{textDecoration:"none",width:"calc((100% / 2) - 1rem)"}}>
+              <button className="buttons-container__button buttons-container__button__viewbag" style={{width:"100%"}}>
                     View Bag
-        </button>
+        </button></Link>
                  <button className="buttons-container__button buttons-container__button__checkout">
                     Checkout
         </button>

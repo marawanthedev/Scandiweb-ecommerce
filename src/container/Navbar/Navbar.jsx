@@ -4,7 +4,7 @@ import { toggleShowCurrencySwitcher, updateSelectedCurrency } from "../../redux/
 import { ToggleCartDropDown } from "../../redux/cart/cart.actions";
 import {getProducts,updateCategory} from "../../redux/category/category_action"
 import dependecies from "./helpers/dependencies"
-import category from "../../pages/Category/Category";
+
 class Navbar extends dependecies.React.Component{
 
 
@@ -55,6 +55,7 @@ class Navbar extends dependecies.React.Component{
         ];  
         const currentCurrency = currencies.filter((currency) => currency.text == this.props.selectedCurrency)[0];
         const { showCurrencyswitcher, toggleShowCurrencySwitcher, showCart, ToggleCartDropDown, itemCount,categories,updateCategory } = this.props;
+        const{Link}=dependecies
         return (
             
             <div className="navbar" >
@@ -63,8 +64,9 @@ class Navbar extends dependecies.React.Component{
                 <Zoom right cascade>
                 <div className="navbar__section navbar__section__left">
 
-                        {categories ? categories.map((category) =>
-                            <div  onClick={()=>updateCategory(category)} className="navbar__item navbar__section__left__item" >{category}</div>):null}
+                        {categories ? categories.map((category,index) =>
+                            <Link to="/" key={index} style={{textDecoration:"none",color:"black"}}>
+                             <div  onClick={()=>updateCategory(category)} className="navbar__item navbar__section__left__item" >{category}</div></Link>) : null}
                       
                     </div>
                 </Zoom>

@@ -10,15 +10,23 @@ class CategoryItem extends dependecies.React.Component{
     }
 
     render() {
-    const { cart } = dependecies;
+    const { cart,Link } = dependecies;
 
         const { selectedCurrency, selectedCurrencySymbol, cartReduxCallBacks, item } = this.props;
         const { gallery, name, prices, margin, inStock } = item;
         return (
             
                  <div className="category-item" style={{margin:`${margin}`}}>
-                   {inStock==false? <div className="category-item__out-of-stock-overlay"><span className="category-item__out-of-stock-overlay__text">Out of stock</span> </div>:null}
-                <div className="category-item__img" style={{backgroundImage:`url(${gallery[0]})`}} ></div>
+                {inStock == false ? <div className="category-item__out-of-stock-overlay"><span className="category-item__out-of-stock-overlay__text">Out of stock</span> </div> : null}
+                
+               
+
+                <Link to={{
+    pathname: "/product_display_page",
+    state: {
+      item:item,
+    },
+  }}> <div className="category-item__img" style={{backgroundImage:`url(${gallery[0]})`}} ></div></Link>
                 <div className="category-item__text">
                     <div className="category-item__text__description">{name}</div>
                     <div className="category-item__text__price">{selectedCurrencySymbol}{prices.filter((price)=>price.currency==selectedCurrency)[0]['amount']}</div>

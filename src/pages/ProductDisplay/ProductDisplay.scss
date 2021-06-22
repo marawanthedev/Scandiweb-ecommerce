@@ -98,7 +98,6 @@
                 background-position: center;
                 cursor: pointer;
                 margin-left: 2.5%;
-                background-position-y: -5rem;
                 @media only screen and (max-width: 1350px) {
                     height: 60%;
                     width: 60%;
@@ -193,14 +192,11 @@
                 font-size: 1.6rem;
                 line-height: 2.5rem;
                 margin-top: 3rem;
-                height: 5rem;
-                text-overflow: ellipsis;
-                white-space: nowrap;
+                height: 7.5rem;
                 overflow: hidden;
-                &h1 {
-                    font-weight: 400 !important;
-                    font-size: 1.6rem !important;
-                    display: none;
+                h1 {
+                    font-weight: 400;
+                    font-size: 1.6rem;
                 }
             }
             @media only screen and (max-width: 930px) {

@@ -8,11 +8,9 @@ class CategoryPage extends dependecies.React.Component{
 
     
     constructor (props) {
-        
         super(props);
-
-       
     }
+  
   componentWillMount() {
     this.props.getProducts()
     }

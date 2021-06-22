@@ -7,10 +7,7 @@ import dependecies from "./helpers/dependencies"
 
 class Navbar extends dependecies.React.Component{
 
-
-
     constructor (props) {
-        
         super(props);
         this.state = {}
     }
@@ -32,9 +29,7 @@ class Navbar extends dependecies.React.Component{
         if (products) {
             products.forEach((product)=>product)
         }
-        else {
-            
-        }
+       
         const currencies = [
             {
             icon: USD,
@@ -100,7 +95,6 @@ class Navbar extends dependecies.React.Component{
                      < CartIcon itemCount={itemCount} ToggleCartDropDown={ToggleCartDropDown}></CartIcon>
                         
                     </div>
-                      
 
                 </div>
              

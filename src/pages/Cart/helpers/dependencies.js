@@ -12,7 +12,6 @@ export { DecreaseItemQuantity, IncreaseItemQuantity, }
 from "../../../redux/cart/cart.actions";
 
 const dependecies = {
-
     React,
     IconButton,
     Plus,
@@ -20,6 +19,5 @@ const dependecies = {
     CartPageItemGallery,
     ItemAttribues,
     connect
-
 }
 export default dependecies;

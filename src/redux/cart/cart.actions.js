@@ -4,28 +4,26 @@ export const ToggleCartDropDown = () => ({
     payload: null,
 });
 
-
-
 export const AddCartItem = (cartItem) => ({
     type: CartActionTypes.ADD_CART_ITEM,
     payload: cartItem,
 });
-export const addAttributeSelectionsIndex = (itemName, attributeIndex, attributeSelectionIndex) => ({
 
+export const addAttributeSelectionsIndex = (item, attributeIndex, attributeSelectionIndex) => ({
     type: CartActionTypes.ADD_ATTRIBUTE_SELECTION_INDEX,
     attributeIndex,
-    itemName,
+    item,
     attributeSelectionIndex
 })
 
-export const IncreaseItemQuantity = (itemName) => ({
+export const IncreaseItemQuantity = (item) => ({
     type: CartActionTypes.INCREASE_ITEM_QUANTITY,
-    payload: itemName,
+    payload: item,
 });
 
-export const DecreaseItemQuantity = (itemName) => ({
+export const DecreaseItemQuantity = (item) => ({
     type: CartActionTypes.DECREASE_ITEM_QUANTITY,
-    payload: itemName,
+    payload: item,
 });
 
 export const RemoveItem = (itemName) => ({

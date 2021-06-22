@@ -36,6 +36,7 @@ class CartPageItemGallery extends dependecies.React.Component{
                 })
         }
     }
+    
     render() {
         const { gallery } = this.props;
         const { imageSelectionIndex } = this.state;

@@ -10,7 +10,6 @@ export const getData = () => {
                 query: GET_PORDUCTS
             }).then(result => {
 
-                console.log(result)
             })
     }
 }

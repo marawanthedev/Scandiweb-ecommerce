@@ -1,12 +1,9 @@
 import { CategoryActionTypes } from "./category_types";
 import { CategorizeProducts, divideCategories, } from "./category.util"
 const initState = {
-
-
     products: null,
     activeCategory: "tech",
     categories: [],
-
 }
 const categoryReducer = (state = initState, action) => {
 
@@ -22,8 +19,6 @@ const categoryReducer = (state = initState, action) => {
             }
         case CategoryActionTypes.UPDATE_CATEGORY:
             {
-
-
                 return {
 
                     ...state,
@@ -31,10 +26,8 @@ const categoryReducer = (state = initState, action) => {
                 }
             }
 
-
-
-
     }
     return state;
 }
+
 export default categoryReducer

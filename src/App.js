@@ -1,4 +1,3 @@
-import logo from './logo.svg';
 import './App.css';
 import CategoryPage from "./pages/Category/Category"
 import { Route } from "react-router-dom";

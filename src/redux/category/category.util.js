@@ -1,9 +1,7 @@
 export const CategorizeProducts = (data) => {
-
-
-
     let categorizedArrayOfProducts = [];
     let savedCategories = [];
+
     data.forEach((product) => {
         if (savedCategories.indexOf(product.category) === -1) {
             categorizedArrayOfProducts[product.category] = []
@@ -13,10 +11,10 @@ export const CategorizeProducts = (data) => {
             categorizedArrayOfProducts[product.category].push(product)
         }
     })
+
     return categorizedArrayOfProducts;
 }
 export const divideCategories = (products) => {
-
 
     function onlyUnique(value, index, self) {
         return self.indexOf(value) === index;

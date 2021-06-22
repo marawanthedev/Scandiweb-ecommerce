@@ -3,7 +3,6 @@ import dependecies from  "./helpers/dependecies";
 
 class CategoryItem extends dependecies.React.Component{
 
-
     constructor (props) {
         super(props);
         this.state = {}
@@ -11,15 +10,13 @@ class CategoryItem extends dependecies.React.Component{
 
     render() {
     const { cart,Link } = dependecies;
+    const { selectedCurrency, selectedCurrencySymbol, cartReduxCallBacks, item } = this.props;
+    const { gallery, name, prices, margin, inStock } = item;
 
-        const { selectedCurrency, selectedCurrencySymbol, cartReduxCallBacks, item } = this.props;
-        const { gallery, name, prices, margin, inStock } = item;
         return (
-            
-                 <div className="category-item" style={{margin:`${margin}`}}>
+
+                <div className="category-item" style={{ margin: `${margin}` }}>
                 {inStock == false ? <div className="category-item__out-of-stock-overlay"><span className="category-item__out-of-stock-overlay__text">Out of stock</span> </div> : null}
-                
-               
 
                 <Link to={{
     pathname: "/product_display_page",
@@ -32,7 +29,7 @@ class CategoryItem extends dependecies.React.Component{
                     <div className="category-item__text__price">{selectedCurrencySymbol}{prices.filter((price)=>price.currency==selectedCurrency)[0]['amount']}</div>
                 </div>
                 {inStock ? <div className="category-item__add-to-cart-btn" onClick={() => {
-                    console.log(item)
+                   item.cartId=Math.floor(Math.random()*10000)
                     cartReduxCallBacks.AddCartItem(item)
                     }}>
                 <img className="category-item__add-to-cart-btn__cart-icon"src={cart} alt=""/>

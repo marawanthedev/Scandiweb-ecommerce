@@ -2,8 +2,6 @@ import React from "react"
 import Fade from 'react-reveal/Fade'
 import "./CurrencySwitcher.scss"
 class CurrencySwitcher extends React.Component{
-
-
     constructor (props) {
         
         super(props);
@@ -13,7 +11,8 @@ class CurrencySwitcher extends React.Component{
     }
     render() {
         
-        const { currencies,currencySelectionUpdateCallBack } = this.props;
+        const { currencies, currencySelectionUpdateCallBack } = this.props;
+        
         return (
             
             <Fade>

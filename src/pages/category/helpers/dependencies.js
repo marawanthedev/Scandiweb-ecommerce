@@ -7,12 +7,9 @@ from "../../../redux/cart/cart.actions"
 export { getProducts }
 from "../../../redux/category/category_action"
 
-
 const dependecies = {
-
     React,
     CategoryItem,
     connect
-
 }
 export default dependecies;

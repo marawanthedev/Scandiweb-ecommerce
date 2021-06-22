@@ -9,8 +9,6 @@ class CartDropDown extends dependecies.React.Component {
         super(props);
         this.state = {}
     }
-
-
     
     render() {
         const { CartItem,Zoom,Link } = dependecies;
@@ -24,7 +22,7 @@ return(
         <ul className="cart-items">
             {cartItems.length > 0 ? cartItems.map(({ ...cartData }, index) => {
             
-            return <CartItem   key={index} selectedCurrency={selectedCurrency} selectedCurrencySymbol={selectedCurrencySymbol} DecreaseItemQuantity={DecreaseItemQuantity} IncreaseItemQuantity={IncreaseItemQuantity}    {...cartData}></CartItem>
+            return <CartItem   key={index} selectedCurrency={selectedCurrency} selectedCurrencySymbol={selectedCurrencySymbol} DecreaseItemQuantity={DecreaseItemQuantity} IncreaseItemQuantity={IncreaseItemQuantity}    {...cartData} item={cartData}></CartItem>
         }):null}
             </ul>
             <div className="cart-dropdown__total-price">
@@ -60,8 +58,6 @@ const mapStateToProps=({cartReducer,currencyReducer})=>({
         Math.round( ( cartItem.quantity*
        cartItem.prices.filter((price) => price.currency == currencyReducer.selectedCurrency)[0]['amount']))
    )), 0) : 0,
-   
-
 });
 const mapDispatchToProps=(dispatch)=>({
     DecreaseItemQuantity:(itemName)=>dispatch(DecreaseItemQuantity(itemName)),

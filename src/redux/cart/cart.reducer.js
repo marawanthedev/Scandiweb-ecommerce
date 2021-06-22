@@ -1,5 +1,5 @@
 import { CartActionTypes } from "./cart.types";
-import { addCartItemUtil, decreaseCartItemQuantityUtil, increaseCartItemQuantityUtil, removeCartItemUtil, addAttributeSelections } from "./cart.utils";
+import { addCartItemUtil, decreaseCartItemQuantityUtil, increaseCartItemQuantityUtil, removeCartItemUtil, addAttributeSelections, } from "./cart.utils";
 
 const INITIAL_STATE = {
     showCart: false,
@@ -37,10 +37,12 @@ const cartReducer = (state = INITIAL_STATE, action) => {
                 return {
 
                     ...state,
-                    cartItems: addAttributeSelections(state.cartItems, action.itemName, action.attributeIndex,
-                        action.attributeSelectionIndex)
+                    cartItems: addAttributeSelections(state.cartItems, action.item, action.attributeIndex,
+                        action.attributeSelectionIndex),
+
                 }
             }
+
         case CartActionTypes.DECREASE_ITEM_QUANTITY:
             {
                 return {

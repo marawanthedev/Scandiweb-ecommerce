@@ -4,7 +4,6 @@ import dependecies from "./helpers/dependencies"
 
 class ProductDisplayPage extends dependecies.React.Component{
 
-
     constructor (props) {
         super(props);
         this.state = {
@@ -16,6 +15,7 @@ class ProductDisplayPage extends dependecies.React.Component{
     handleAttributeSelection=(newAttributeIndex,newAttributeSelectionIndex,item) =>{
 
         const { attributeIndex, attributeSelectionIndex } = this.state;
+        
         //attributeIndex and attribute selection index are always corrosponding
         // meaning that selectionIndex[0] is at attribute selectionArray[0] and so on
 
@@ -38,8 +38,9 @@ class ProductDisplayPage extends dependecies.React.Component{
     render() {
         const item = {...this.props.location.state.item};
         const { selectedImageIndex, attributeSelectionIndex,attributeIndex} = this.state
-        const { selectedCurrency, selectedCurrencySymbol, AddCartItem, attributeSelectionIndexes, addAttributeSelectionsIndex } = this.props;
+        const { selectedCurrency, selectedCurrencySymbol, AddCartItem,addAttributeSelectionsIndex, } = this.props;
         const { ItemAttribues } = dependecies;
+
         const itemPrice = item.prices.filter((prices) => prices.currency === selectedCurrency)[0].amount;
         return <div className="productDisplayPage">
             <div className="productDisplayPage__left-side">
@@ -58,7 +59,7 @@ class ProductDisplayPage extends dependecies.React.Component{
 
                     {
                         item.attributes.map((attribute, index) => <ItemAttribues key={index} attribute={attribute} attributeIndex={index}
-                        attributeSelectionIndex={attributeSelectionIndex[attributeSelectionIndex.length-1]}   item={item} onClickCallBack={this.handleAttributeSelection}></ItemAttribues>)
+                        attributeSelectionIndex={attributeSelectionIndex[attributeSelectionIndex.length-1]} toggleButtons={true}  item={item} onClickCallBack={this.handleAttributeSelection}></ItemAttribues>)
                      } 
                
         
@@ -68,8 +69,12 @@ class ProductDisplayPage extends dependecies.React.Component{
                     <div className="productDisplayPage__product__info__price__amount">{selectedCurrencySymbol}{itemPrice}</div>
                 </div>
                 <button className="productDisplayPage__product__info__btn" onClick={() => {
+                    item.cartId = Math.floor(Math.random() * 10000)
+                    console.log(this.state)
                     AddCartItem(item)
-                addAttributeSelectionsIndex(item.name,attributeIndex,attributeSelectionIndex)}}> Add to Cart</button>
+                    addAttributeSelectionsIndex(item, attributeIndex, attributeSelectionIndex)
+                
+                }}> Add to Cart</button>
                 <div className="productDisplayPage__product__info__description"  dangerouslySetInnerHTML={{__html:item.description }}>
              
                 </div>
@@ -79,16 +84,14 @@ class ProductDisplayPage extends dependecies.React.Component{
     }
 }
 const mapStatToProps = ({ currencyReducer,cartReducer }) => ({
-  
   selectedCurrency: currencyReducer.selectedCurrency,
   selectedCurrencySymbol: currencyReducer.selectedCurrencySymbol,
   attributeSelectionIndexes:cartReducer.attributeSelectionIndexes
 })
 
 const mapDispatchToProps = (dispatch) => ({
-  
     AddCartItem: (cartItem) => (dispatch(AddCartItem(cartItem))),
-    addAttributeSelectionsIndex:(itemName,attributeIndex, attributeSelectionIndex)=>(dispatch(addAttributeSelectionsIndex(itemName,attributeIndex, attributeSelectionIndex)))
+    addAttributeSelectionsIndex: (item, attributeIndex, attributeSelectionIndex) => (dispatch(addAttributeSelectionsIndex(item, attributeIndex, attributeSelectionIndex))),
 
 })
 export default dependecies.connect(mapStatToProps,mapDispatchToProps)(ProductDisplayPage);

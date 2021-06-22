@@ -13,7 +13,6 @@ import "../Navbar.scss"
 import { Link } from "react-router-dom";
 
 const dependecies = {
-
     React,
     Logo,
     USD,

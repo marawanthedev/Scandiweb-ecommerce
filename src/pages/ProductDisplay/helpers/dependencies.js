@@ -9,10 +9,8 @@ from "../../../redux/cart/cart.actions"
 
 
 const dependecies = {
-
     React,
     ItemAttribues,
     connect
-
 }
 export default dependecies;

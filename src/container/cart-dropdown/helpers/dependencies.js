@@ -10,12 +10,10 @@ export { DecreaseItemQuantity, IncreaseItemQuantity, ToggleCartDropDown }
 from "../../../redux/cart/cart.actions";
 
 export const dependecies = {
-
     React,
     connect,
     withRouter,
     CartItem,
     Zoom,
     Link
-
 }

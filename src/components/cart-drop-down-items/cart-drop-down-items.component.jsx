@@ -6,22 +6,18 @@ import dependecies from  "./helpers/dependcies";
 
 class CartItem extends dependecies.React.Component{
 
-
     constructor (props) {
         
         super(props);
 
-        this.state = {
-            
-        }
+        this.state = {}
     }
 
     render() {
-    const {Plus,React,Minus,IconButton } = dependecies;
-    const sizes=['S','M','L']
-    const { gallery, name, quantity, DecreaseItemQuantity, IncreaseItemQuantity, prices, selectedCurrency, selectedCurrencySymbol } = this.props;
-
-      
+    const {Plus,React,Minus,IconButton,ItemAttribues } = dependecies;
+   
+        const { gallery, name, quantity, DecreaseItemQuantity, IncreaseItemQuantity, prices, selectedCurrency, selectedCurrencySymbol, attributes, item } = this.props;
+        
         return(
 
         <div className="cart-item" key={name} >
@@ -35,27 +31,32 @@ class CartItem extends dependecies.React.Component{
                     {selectedCurrencySymbol}
                         {prices.filter((price) => price.currency == selectedCurrency)[0]['amount']} </div>
                     </div>
-                    
-                    <div className="cart-item__content__size-buttons-container">
+                    <div className="cart-item__content__attributes-container">
 
-                        {
-                            sizes.map((size) => {
-                            
-                                return(<button className="cart-item__content__btn cart-item__content-size-button cart-item__content__size-buttons-container__btn">
-                            {size}
-                        </button>)
-                            })
-                        }
+                      {
+                                
+                                attributes.map((attribute)=>{
+ 
+                                    const attributeSelection = attribute.items.filter((item) => item.selected == true)[0]
+                                    if (attributeSelection) {
+                                            return <div className="cart-item__content__attribute-buttons-container">
+
+                         <ItemAttribues  attribute={attribute} fontSize={".6rem"} onClickCallBack={()=>{}}></ItemAttribues>
                         
                     </div>
+                                    }
+                                    })
+                            }
+                            </div>
+                   
                     </div>
                     
                     <div className="cart-item__content__quantity-buttons-container">
-                    <IconButton callBack={IncreaseItemQuantity}  Icon={Plus} callBackParam={name}> </IconButton>
+                    <IconButton callBack={IncreaseItemQuantity}  Icon={Plus} callBackParam={item}> </IconButton>
 
                     <span className="cart-item__content__quantity">{quantity}</span>
 
-                    <IconButton callBack={DecreaseItemQuantity}  Icon={Minus} callBackParam={name}> </IconButton>
+                    <IconButton callBack={DecreaseItemQuantity}  Icon={Minus} callBackParam={item}> </IconButton>
                         
                    
                     </div>
@@ -67,7 +68,6 @@ class CartItem extends dependecies.React.Component{
     )
     }
 }
-
 
 
 export default CartItem;

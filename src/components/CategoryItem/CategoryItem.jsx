@@ -10,7 +10,8 @@ class CategoryItem extends dependecies.React.Component{
 
     render() {
     const { cart,Link } = dependecies;
-    const { selectedCurrency, selectedCurrencySymbol, cartReduxCallBacks, item } = this.props;
+    const { selectedCurrency, selectedCurrencySymbol, cartReduxCallBacks } = this.props;
+    let item=JSON.parse(JSON.stringify(this.props.item))
     const { gallery, name, prices, margin, inStock } = item;
 
         return (

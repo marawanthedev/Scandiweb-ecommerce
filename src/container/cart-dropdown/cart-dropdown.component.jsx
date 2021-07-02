@@ -12,7 +12,7 @@ class CartDropDown extends dependecies.React.Component {
     
     render() {
         const { CartItem,Zoom,Link } = dependecies;
-        const { cartItems, DecreaseItemQuantity, IncreaseItemQuantity, selectedCurrency, selectedCurrencySymbol, itemCount, totalPrice } = this.props;
+        const { cartItems, DecreaseItemQuantity, IncreaseItemQuantity, selectedCurrency, selectedCurrencySymbol, itemCount, totalPrice,ToggleCartDropDown } = this.props;
 return(
       
         <Zoom><div className="cart-dropdown ">
@@ -22,7 +22,7 @@ return(
         <ul className="cart-items">
             {cartItems.length > 0 ? cartItems.map(({ ...cartData }, index) => {
             
-            return <CartItem   key={index} selectedCurrency={selectedCurrency} selectedCurrencySymbol={selectedCurrencySymbol} DecreaseItemQuantity={DecreaseItemQuantity} IncreaseItemQuantity={IncreaseItemQuantity}    {...cartData} item={cartData}></CartItem>
+            return <CartItem   key={index} selectedCurrency={selectedCurrency} ToggleCartDropDownCallBack={ToggleCartDropDown} selectedCurrencySymbol={selectedCurrencySymbol} DecreaseItemQuantity={DecreaseItemQuantity} IncreaseItemQuantity={IncreaseItemQuantity}    {...cartData} item={cartData}></CartItem>
         }):null}
             </ul>
             <div className="cart-dropdown__total-price">

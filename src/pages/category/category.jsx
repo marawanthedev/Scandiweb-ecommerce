@@ -15,24 +15,21 @@ class CategoryPage extends dependecies.React.Component{
     this.props.getProducts()
     }
     
-  getProducts = (products,activeCategory,selectedCurrencySymbol,selectedCurrency,cartReduxCallBacks,CategoryItem) => {
+  getProducts = (categorizedProducts,products,activeCategory,selectedCurrencySymbol,selectedCurrency,cartReduxCallBacks,CategoryItem) => {
 
-    let itemsToBeDisplayed;
-    if (products) {
-      
-      if (activeCategory!="all") {
+    if (activeCategory!="all") {
 
-        itemsToBeDisplayed = products[activeCategory]
-        
-        if (itemsToBeDisplayed.length != 0) {
-      
-        return products[activeCategory]?products[activeCategory].map((item,index) =>
+      console.log(categorizedProducts)
+      if (categorizedProducts) {
+        return categorizedProducts[activeCategory]?categorizedProducts[activeCategory].map((item,index) =>
                   <CategoryItem item={item}  key={index}  cartReduxCallBacks={cartReduxCallBacks}
                   selectedCurrencySymbol={selectedCurrencySymbol}
                   selectedCurrency={selectedCurrency} margin="2rem 1rem"></CategoryItem>
                   ):null 
 
-    }
+      }
+
+    
       }
       else {
 
@@ -43,14 +40,13 @@ class CategoryPage extends dependecies.React.Component{
                   ):null 
      
       }
-
-
-    }
+   
+   
     
   
   }
     render() {
-      const {products, selectedCurrency, selectedCurrencySymbol,AddCartItem,IncreaseItemQuantity,DecreaseItemQuantity,RemoveItem , activeCategory} = this.props;
+      const {products, selectedCurrency, selectedCurrencySymbol,AddCartItem,IncreaseItemQuantity,DecreaseItemQuantity,RemoveItem , activeCategory,categorizedProducts} = this.props;
       const cartReduxCallBacks = { AddCartItem, IncreaseItemQuantity, DecreaseItemQuantity, RemoveItem }
       const {  CategoryItem } = dependecies;
       return (
@@ -59,7 +55,7 @@ class CategoryPage extends dependecies.React.Component{
                {activeCategory}
           </div>
  <div className="categoryPage__items-container">
-         { this.getProducts(products,activeCategory,selectedCurrencySymbol,selectedCurrency,cartReduxCallBacks,CategoryItem)}
+         { this.getProducts(categorizedProducts,products,activeCategory,selectedCurrencySymbol,selectedCurrency,cartReduxCallBacks,CategoryItem)}
                   </div>
            
         </div>
@@ -73,7 +69,8 @@ const mapStatToProps = ({ categoryReducer, currencyReducer }) => ({
   products: categoryReducer.products,
   selectedCurrency: currencyReducer.selectedCurrency,
   selectedCurrencySymbol: currencyReducer.selectedCurrencySymbol,
-  activeCategory:categoryReducer.activeCategory
+  activeCategory: categoryReducer.activeCategory,
+  categorizedProducts:categoryReducer.categorizedProducts
 })
 const mapDispatchToProps = (dispatch) => ({
   

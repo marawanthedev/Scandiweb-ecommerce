@@ -2,6 +2,7 @@ import { CategoryActionTypes } from "./category_types";
 import { CategorizeProducts, divideCategories, } from "./category.util"
 const initState = {
     products: null,
+    categorizedProducts: null,
     activeCategory: "all",
     categories: [],
 }
@@ -13,7 +14,7 @@ const categoryReducer = (state = initState, action) => {
             {
                 return {
                     ...state,
-                    products: CategorizeProducts(action.payload.category.products, state.activeCategory),
+                    products: action.payload.category.products,
                     categories: divideCategories(action.payload.category.products)
                 }
             }
@@ -22,6 +23,7 @@ const categoryReducer = (state = initState, action) => {
                 return {
 
                     ...state,
+                    categorizedProducts: CategorizeProducts(state.products, action.payload),
                     activeCategory: action.payload
                 }
             }

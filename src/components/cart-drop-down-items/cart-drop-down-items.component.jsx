@@ -2,6 +2,7 @@
 
 import dependecies from  "./helpers/dependcies";
 
+import { Link } from "react-router-dom";
 
 
 class CartItem extends dependecies.React.Component{
@@ -16,7 +17,7 @@ class CartItem extends dependecies.React.Component{
     render() {
     const {Plus,React,Minus,IconButton,ItemAttribues } = dependecies;
    
-        const { gallery, name, quantity, DecreaseItemQuantity, IncreaseItemQuantity, prices, selectedCurrency, selectedCurrencySymbol, attributes, item } = this.props;
+        const { gallery, name, quantity, DecreaseItemQuantity, IncreaseItemQuantity, prices, selectedCurrency, selectedCurrencySymbol, attributes, item,ToggleCartDropDownCallBack } = this.props;
         
         return(
 
@@ -60,8 +61,15 @@ class CartItem extends dependecies.React.Component{
                         
                    
                     </div>
-            </div>
-            <div className="cart-item__img" style={{backgroundImage:`url(${gallery[0]})`}}></div>
+                </div>
+                    {}
+                <Link className="cart-item__img" onClick={() =>ToggleCartDropDownCallBack()} style={{backgroundImage:`url(${gallery[0]})`}} to={{
+    pathname: "/product_display_page",
+    state: {
+      item:item,
+    },
+                }}>
+      </Link>
 
         </div>
 

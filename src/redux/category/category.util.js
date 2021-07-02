@@ -28,6 +28,7 @@ export const divideCategories = (products) => {
     products.forEach((product) => {
         categories.push(product.category)
     })
+    categories.push("all")
     categories = categories.filter(onlyUnique);
     return categories
 }

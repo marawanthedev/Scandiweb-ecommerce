@@ -36,13 +36,13 @@ $--c-primary :#5ECE7B;
                     text-transform: uppercase;
                 }
                 &:not(:first-of-type) {
-                    margin: 0 3rem;
+                    margin-right: 5rem;
                     @media only screen and (max-width: 400px) {
                         margin: 0 1.5rem;
                     }
                 }
                 &:first-of-type {
-                    margin-right: 3rem;
+                    margin-right: 5rem;
                     @media only screen and (max-width: 400px) {
                         margin-right: 1.5rem;
                     }
@@ -65,7 +65,7 @@ $--c-primary :#5ECE7B;
                     bottom: -2.5rem;
                     left: 50%;
                     transform: translateX(-50%);
-                    width: 6rem;
+                    width: 7rem;
                     height: 2px;
                     background-color: $--c-primary;
                     visibility: hidden;

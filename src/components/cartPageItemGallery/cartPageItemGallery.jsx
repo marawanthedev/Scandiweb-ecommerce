@@ -1,7 +1,7 @@
 
 import dependecies from "./helpers/dependcies"
 
-class CartPageItemGallery extends dependecies.React.Component{
+class CartPageItemGallery extends dependecies.React.PureComponent{
 
     constructor (props) {
         

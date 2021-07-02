@@ -2,7 +2,7 @@ import React from "react";
 import "./IconButton.scss";
 
 
-class IconButton extends React.Component{
+class IconButton extends React.PureComponent{
 
     constructor(props){
         super(props);

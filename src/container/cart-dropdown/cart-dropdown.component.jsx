@@ -3,7 +3,7 @@ import  {dependecies} from "./helpers/dependencies.js"
 import {DecreaseItemQuantity,IncreaseItemQuantity,ToggleCartDropDown} from "./helpers/dependencies.js";
 
 
-class CartDropDown extends dependecies.React.Component {
+class CartDropDown extends dependecies.React.PureComponent {
 
     constructor (props) {
         super(props);

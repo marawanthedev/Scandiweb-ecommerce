@@ -5,7 +5,7 @@ import dependecies from  "./helpers/dependcies";
 import { Link } from "react-router-dom";
 
 
-class CartItem extends dependecies.React.Component{
+class CartItem extends dependecies.React.PureComponent{
 
     constructor (props) {
         
@@ -27,7 +27,6 @@ class CartItem extends dependecies.React.Component{
                     <div className="cart-item__content__main__text">
                          <div className="cart-item__content__header">{name}</div>
                 <div className="cart-item__content__price">
-                    
                   
                     {selectedCurrencySymbol}
                         {prices.filter((price) => price.currency == selectedCurrency)[0]['amount']} </div>

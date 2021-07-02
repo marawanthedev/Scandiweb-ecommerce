@@ -5,7 +5,7 @@ import { ToggleCartDropDown } from "../../redux/cart/cart.actions";
 import {getProducts,updateCategory} from "../../redux/category/category_action"
 import dependecies from "./helpers/dependencies"
 
-class Navbar extends dependecies.React.Component{
+class Navbar extends dependecies.React.PureComponent{
 
     constructor (props) {
         super(props);

@@ -2,7 +2,7 @@ import { AddCartItem } from "./helpers/dependencies"
 import { addAttributeSelectionsIndex } from "./helpers/dependencies"
 import dependecies from "./helpers/dependencies"
 
-class ProductDisplayPage extends dependecies.React.Component{
+class ProductDisplayPage extends dependecies.React.PureComponent{
 
     constructor (props) {
         super(props);

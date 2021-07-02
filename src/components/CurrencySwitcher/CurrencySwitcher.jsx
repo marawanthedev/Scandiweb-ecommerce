@@ -1,7 +1,7 @@
 import React from "react"
 import Fade from 'react-reveal/Fade'
 import "./CurrencySwitcher.scss"
-class CurrencySwitcher extends React.Component{
+class CurrencySwitcher extends React.PureComponent{
     constructor (props) {
         
         super(props);

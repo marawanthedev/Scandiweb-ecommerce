@@ -1,7 +1,7 @@
 import dependecies from  "./helpers/dependecies";
 
 
-class CategoryItem extends dependecies.React.Component{
+class CategoryItem extends dependecies.React.PureComponent{
 
     constructor (props) {
         super(props);

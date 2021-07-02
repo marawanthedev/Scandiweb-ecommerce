@@ -1,7 +1,7 @@
 import dependecies from  "./helpers/dependecies";
 
 
-class CartIcon extends dependecies.React.Component{
+class CartIcon extends dependecies.React.PureComponent{
 
     constructor(props){
 

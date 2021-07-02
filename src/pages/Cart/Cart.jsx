@@ -3,7 +3,7 @@ import {DecreaseItemQuantity,IncreaseItemQuantity,} from "./helpers/dependencies
 import dependecies from "./helpers/dependencies"
 
 
-class CartPage extends dependecies.React.Component{
+class CartPage extends dependecies.React.PureComponent{
 
     constructor (props) {
         super(props);

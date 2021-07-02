@@ -53,7 +53,7 @@ class Navbar extends dependecies.React.Component{
         const{Link}=dependecies
         return (
             
-            <div className="navbar" >
+            <div className="navbar">
             
 
                 <Zoom right cascade>
@@ -76,14 +76,17 @@ class Navbar extends dependecies.React.Component{
                     {
                         this.manageCurrencySwitcher(currencies)
                     }
-                    
+                     {/* onClick={() => {if( showCurrencyswitcher==true){toggleShowCurrencySwitcher()}}} */}
                     {showCart ? <div>
                         <div className="cart-overlay" onClick={()=>ToggleCartDropDown()}></div>
                         <CartDropDown itemCount={itemCount}></CartDropDown> 
                         </div>: null}
 
                     
-                  <div className="navbar__item navbar__section__right__item">
+                    <div className="navbar__item navbar__section__right__item">
+
+                        {showCurrencyswitcher?<div className="currency-overlay" onClick={()=>toggleShowCurrencySwitcher()}></div>:null}
+
                         <img src={currentCurrency.icon} alt="" className="navbar__icon navbar__icon__currencys" />
                         <img src={ChevronIcon} alt=""
                             

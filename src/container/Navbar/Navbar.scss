@@ -69,7 +69,6 @@ $--c-primary :#5ECE7B;
         }
         &__middle {
             justify-content: center;
-           
         }
     }
     &__item {
@@ -107,6 +106,16 @@ $--c-primary :#5ECE7B;
     width: 100%;
     height: 100vmax;
     background-color: rgba(57, 55, 72, 0.22);
+    z-index: 22;
+    position: fixed;
+    bottom: 0;
+    left: 0;
+}
+
+.currency-overlay {
+    width: 100%;
+    height: 100vmax;
+    background-color: transparent;
     z-index: 22;
     position: fixed;
     bottom: 0;

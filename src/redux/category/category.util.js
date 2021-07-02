@@ -1,16 +1,20 @@
-export const CategorizeProducts = (data) => {
+export const CategorizeProducts = (data, activeCategory) => {
     let categorizedArrayOfProducts = [];
     let savedCategories = [];
+    if (activeCategory != "all") {
+        data.forEach((product) => {
+            if (savedCategories.indexOf(product.category) === -1) {
+                categorizedArrayOfProducts[product.category] = []
+                categorizedArrayOfProducts[product.category].push(product)
+                savedCategories.push(product.category);
+            } else {
+                categorizedArrayOfProducts[product.category].push(product)
+            }
+        })
+    } else {
+        categorizedArrayOfProducts = data;
+    }
 
-    data.forEach((product) => {
-        if (savedCategories.indexOf(product.category) === -1) {
-            categorizedArrayOfProducts[product.category] = []
-            categorizedArrayOfProducts[product.category].push(product)
-            savedCategories.push(product.category);
-        } else {
-            categorizedArrayOfProducts[product.category].push(product)
-        }
-    })
 
     return categorizedArrayOfProducts;
 }

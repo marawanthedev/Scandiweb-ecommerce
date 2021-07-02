@@ -96,6 +96,7 @@ class Navbar extends dependecies.React.Component{
                     </div>
                       <div className="navbar__item navbar__section__right__item">
                        
+                       
                      < CartIcon itemCount={itemCount} ToggleCartDropDown={ToggleCartDropDown}></CartIcon>
                         
                     </div>

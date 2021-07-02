@@ -18,9 +18,11 @@ class CartIcon extends dependecies.React.Component{
          return (    
             <div className={`cart-icon`} onClick={()=> ToggleCartDropDown()}>
                 <ShoppingIcon className="shopping-icon"></ShoppingIcon>
-                <div className="item-count-circle">
+                 {
+                     itemCount!=0?<div className="item-count-circle">
                     <span className="item-count ">{itemCount}</span>
-                </div>
+                </div>:null
+                }
             </div>
         )
     }   

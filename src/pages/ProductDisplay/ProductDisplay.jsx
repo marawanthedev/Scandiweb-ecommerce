@@ -2,20 +2,20 @@ import { AddCartItem } from "./helpers/dependencies"
 import { addAttributeSelectionsIndex } from "./helpers/dependencies"
 import dependecies from "./helpers/dependencies"
 
-class ProductDisplayPage extends dependecies.React.PureComponent{
+class ProductDisplayPage extends dependecies.React.PureComponent {
 
     constructor (props) {
         super(props);
         this.state = {
             selectedImageIndex: 0,
             attributeIndex: [],
-            attributeSelectionIndex:[]
+            attributeSelectionIndex: []
         }
     }
-    handleAttributeSelection=(newAttributeIndex,newAttributeSelectionIndex,item) =>{
+    handleAttributeSelection = (newAttributeIndex, newAttributeSelectionIndex, item) => {
 
         const { attributeIndex, attributeSelectionIndex } = this.state;
-        
+
         //attributeIndex and attribute selection index are always corrosponding
         // meaning that selectionIndex[0] is at attribute selectionArray[0] and so on
 
@@ -24,21 +24,21 @@ class ProductDisplayPage extends dependecies.React.PureComponent{
             attributeSelectionIndex.push(newAttributeSelectionIndex)
         }
         else {
-            
+
             attributeSelectionIndex[newAttributeIndex] = newAttributeSelectionIndex;
         }
 
         this.setState({
-           attributeIndex: attributeIndex,
-           attributeSelectionIndex:attributeSelectionIndex
+            attributeIndex: attributeIndex,
+            attributeSelectionIndex: attributeSelectionIndex
         })
-        
+
     }
 
     render() {
-        const item = {...this.props.location.state.item};
-        const { selectedImageIndex, attributeSelectionIndex,attributeIndex} = this.state
-        const { selectedCurrency, selectedCurrencySymbol, AddCartItem,addAttributeSelectionsIndex, } = this.props;
+        const item = { ...this.props.location.state.item };
+        const { selectedImageIndex, attributeSelectionIndex, attributeIndex } = this.state
+        const { selectedCurrency, selectedCurrencySymbol, AddCartItem, addAttributeSelectionsIndex, } = this.props;
         const { ItemAttribues } = dependecies;
 
         const itemPrice = item.prices.filter((prices) => prices.currency === selectedCurrency)[0].amount;
@@ -47,9 +47,9 @@ class ProductDisplayPage extends dependecies.React.PureComponent{
                 <div className="productDisplayPage__left-side__images-gallery">
 
                     {item.gallery.map((galleryItem, index) =>
-                        <div className="productDisplayPage__left-side__images-gallery__item" key={index} onClick={()=>this.setState({selectedImageIndex:index})} style={{ backgroundImage: `url(${galleryItem})` }}></div>)}
+                        <div className="productDisplayPage__left-side__images-gallery__item" key={index} onClick={() => this.setState({ selectedImageIndex: index })} style={{ backgroundImage: `url(${galleryItem})` }}></div>)}
                 </div>
-                <div className="productDisplayPage__left-side__selected-image-container" style={{backgroundImage:`url(${item.gallery[selectedImageIndex]})`}}></div>
+                <div className="productDisplayPage__left-side__selected-image-container" style={{ backgroundImage: `url(${item.gallery[selectedImageIndex]})` }}></div>
 
             </div>
             <div className="productDisplayPage__product__info">
@@ -59,12 +59,12 @@ class ProductDisplayPage extends dependecies.React.PureComponent{
 
                     {
                         item.attributes.map((attribute, index) => <ItemAttribues key={index} attribute={attribute} attributeIndex={index}
-                        attributeSelectionIndex={attributeSelectionIndex[attributeSelectionIndex.length-1]} toggleButtons={true}  item={item} onClickCallBack={this.handleAttributeSelection}></ItemAttribues>)
-                     } 
-               
-        
+                            attributeSelectionIndex={attributeSelectionIndex[attributeSelectionIndex.length - 1]} toggleButtons={true} item={item} onClickCallBack={this.handleAttributeSelection}></ItemAttribues>)
+                    }
+
+
                 </div>
-                            <div className="productDisplayPage__product__info__price">
+                <div className="productDisplayPage__product__info__price">
                     <div>Price:</div>
                     <div className="productDisplayPage__product__info__price__amount">{selectedCurrencySymbol}{itemPrice}</div>
                 </div>
@@ -73,20 +73,20 @@ class ProductDisplayPage extends dependecies.React.PureComponent{
                     console.log(this.state)
                     AddCartItem(item)
                     addAttributeSelectionsIndex(item, attributeIndex, attributeSelectionIndex)
-                
+
                 }}> Add to Cart</button>
-                <div className="productDisplayPage__product__info__description"  dangerouslySetInnerHTML={{__html:item.description }}>
-             
+                <div className="productDisplayPage__product__info__description" dangerouslySetInnerHTML={{ __html: item.description }}>
+
                 </div>
             </div>
 
         </div>
     }
 }
-const mapStatToProps = ({ currencyReducer,cartReducer }) => ({
-  selectedCurrency: currencyReducer.selectedCurrency,
-  selectedCurrencySymbol: currencyReducer.selectedCurrencySymbol,
-  attributeSelectionIndexes:cartReducer.attributeSelectionIndexes
+const mapStatToProps = ({ currencyReducer, cartReducer }) => ({
+    selectedCurrency: currencyReducer.selectedCurrency,
+    selectedCurrencySymbol: currencyReducer.selectedCurrencySymbol,
+    attributeSelectionIndexes: cartReducer.attributeSelectionIndexes
 })
 
 const mapDispatchToProps = (dispatch) => ({
@@ -94,4 +94,4 @@ const mapDispatchToProps = (dispatch) => ({
     addAttributeSelectionsIndex: (item, attributeIndex, attributeSelectionIndex) => (dispatch(addAttributeSelectionsIndex(item, attributeIndex, attributeSelectionIndex))),
 
 })
-export default dependecies.connect(mapStatToProps,mapDispatchToProps)(ProductDisplayPage);
+export default dependecies.connect(mapStatToProps, mapDispatchToProps)(ProductDisplayPage);

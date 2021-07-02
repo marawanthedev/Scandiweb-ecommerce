@@ -49,7 +49,7 @@ class Navbar extends dependecies.React.Component{
             }
         ];  
         const currentCurrency = currencies.filter((currency) => currency.text == this.props.selectedCurrency)[0];
-        const { showCurrencyswitcher, toggleShowCurrencySwitcher, showCart, ToggleCartDropDown, itemCount,categories,updateCategory } = this.props;
+        const { showCurrencyswitcher, toggleShowCurrencySwitcher, showCart, ToggleCartDropDown, itemCount,categories,updateCategory,activeCategory } = this.props;
         const{Link}=dependecies
         return (
             
@@ -58,10 +58,11 @@ class Navbar extends dependecies.React.Component{
 
                 <Zoom right cascade>
                 <div className="navbar__section navbar__section__left">
+        {/* border-bottom: 2px solid rgba(94, 206, 123, 1); */}
 
                         {categories ? categories.map((category,index) =>
-                            <Link to="/" key={index} style={{textDecoration:"none",color:"black"}}>
-                             <div  onClick={()=>updateCategory(category)} className="navbar__item navbar__section__left__item" >{category}</div></Link>) : null}
+                            <Link to="/" key={index} style={{textDecoration:"none",color:"black",}}>
+                             <div  onClick={()=>updateCategory(category)} className={`navbar__item navbar__section__left__item ${activeCategory==category?"active":null}`}>{category}</div></Link>) : null}
                       
                     </div>
                 </Zoom>
@@ -111,7 +112,9 @@ const mapStateToProps = ({ currencyReducer,cartReducer,categoryReducer}) => ({
     showCart: cartReducer.showCart,
     itemCount: cartReducer.cartItems.length > 0 ? cartReducer.cartItems.reduce((accumaltedQuantity, cartItem) => accumaltedQuantity + cartItem.quantity, 0) : 0,
     products: categoryReducer.products,
-    categories: categoryReducer.categories
+    categories: categoryReducer.categories,
+    activeCategory: categoryReducer.activeCategory,
+
 })
 const mapDispatchToProps = (dispatch) => ({
     toggleShowCurrencySwitcher: () => dispatch(toggleShowCurrencySwitcher()),

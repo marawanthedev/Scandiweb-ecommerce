@@ -47,6 +47,12 @@ $--c-primary :#5ECE7B;
                         margin-right: 1.5rem;
                     }
                 }
+                &.active {
+                    color: $--c-primary;
+                    &::after {
+                        visibility: visible;
+                    }
+                }
                 &:hover {
                     color: $--c-primary;
                     &::after {
@@ -59,7 +65,7 @@ $--c-primary :#5ECE7B;
                     bottom: -2.5rem;
                     left: 50%;
                     transform: translateX(-50%);
-                    width: 8rem;
+                    width: 6rem;
                     height: 2px;
                     background-color: $--c-primary;
                     visibility: hidden;

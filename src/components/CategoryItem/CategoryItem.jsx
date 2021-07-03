@@ -11,11 +11,11 @@ class CategoryItem extends dependecies.React.PureComponent {
         const { cart, Link } = dependecies;
         const { selectedCurrency, selectedCurrencySymbol, cartReduxCallBacks } = this.props;
         let item = JSON.parse(JSON.stringify(this.props.item))
-        const { gallery, name, prices, margin, inStock } = item;
+        const { gallery, name, prices, inStock } = item;
 
         return (
 
-            <div className="category-item" style={{ margin: `${margin}` }}>
+            <div className="category-item" >
                 {inStock === false ? <div className="category-item__out-of-stock-overlay"><span className="category-item__out-of-stock-overlay__text">Out of stock</span> </div> : null}
 
                 <Link to={{

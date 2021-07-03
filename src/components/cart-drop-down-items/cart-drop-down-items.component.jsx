@@ -40,7 +40,7 @@ class CartItem extends dependecies.React.PureComponent {
                                     if (attributeSelection) {
                                         return <div className="cart-item__content__attribute-buttons-container">
 
-                                            <ItemAttribues attribute={attribute} fontSize={".6rem"} onClickCallBack={() => { }}></ItemAttribues>
+                                            <ItemAttribues attribute={attribute} isMini={true} onClickCallBack={() => { }}></ItemAttribues>
 
                                         </div>
                                     }

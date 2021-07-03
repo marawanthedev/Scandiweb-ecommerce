@@ -24,7 +24,7 @@ class CategoryPage extends dependecies.React.PureComponent {
         return categorizedProducts[activeCategory] ? categorizedProducts[activeCategory].map((item, index) =>
           <CategoryItem item={item} key={index} cartReduxCallBacks={cartReduxCallBacks}
             selectedCurrencySymbol={selectedCurrencySymbol}
-            selectedCurrency={selectedCurrency} margin="2rem 1rem"></CategoryItem>
+            selectedCurrency={selectedCurrency}></CategoryItem>
         ) : null
 
       }
@@ -36,7 +36,7 @@ class CategoryPage extends dependecies.React.PureComponent {
       return products ? products.map((item, index) =>
         <CategoryItem item={item} key={index} cartReduxCallBacks={cartReduxCallBacks}
           selectedCurrencySymbol={selectedCurrencySymbol}
-          selectedCurrency={selectedCurrency} margin="2rem 1rem"></CategoryItem>
+          selectedCurrency={selectedCurrency} ></CategoryItem>
       ) : null
 
     }

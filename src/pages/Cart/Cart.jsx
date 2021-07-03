@@ -46,7 +46,7 @@ class CartPage extends dependecies.React.PureComponent {
                                             cartItem.attributes.map((attribute, index) => {
                                                 const attributeSelection = attribute.items.filter((item) => item.selected == true)[0]
                                                 if (attributeSelection) {
-                                                    return <ItemAttribues key={index} minHeight={"5rem"} hideAttributeName={true} attribute={attribute} attributeIndex={index} toggleButtons={false}
+                                                    return <ItemAttribues key={index} hideAttributeName={false} attribute={attribute} attributeIndex={index} toggleButtons={false}
                                                         attributeSelectionIndex={attributeSelectionIndex[attributeSelectionIndex.length - 1]} item={cartItem} onClickCallBack={() => { }}></ItemAttribues>
                                                 }
                                             })
@@ -56,9 +56,9 @@ class CartPage extends dependecies.React.PureComponent {
                                 </div>
                                 <div className="cart__item__right-side">
                                     <div className="cart__item__right-side__quantity-control">
-                                        <IconButton callBack={IncreaseItemQuantity} width={"3.5rem"} height={"3.5rem"} Icon={Plus} callBackParam={cartItem}> </IconButton>
+                                        <IconButton callBack={IncreaseItemQuantity} Icon={Plus} callBackParam={cartItem}> </IconButton>
                                         <div className="cart__item__right-side__quantity-control__amount">{cartItem.quantity}</div>
-                                        <IconButton callBack={DecreaseItemQuantity} width={"3.5rem"} height={"3.5rem"} Icon={Minus} callBackParam={cartItem}> </IconButton>
+                                        <IconButton callBack={DecreaseItemQuantity} Icon={Minus} callBackParam={cartItem}> </IconButton>
 
                                     </div>
 

@@ -3,6 +3,10 @@
     font-size: 1rem;
     min-height: 10em;
     margin: .5rem 0;
+     &.mini{
+
+        font-size: .6rem;
+    }
     &__name {
         font-size: 1.8em;
         font-family: 'Roboto Condensed', sans-serif;

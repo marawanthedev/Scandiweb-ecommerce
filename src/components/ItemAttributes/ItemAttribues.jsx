@@ -20,11 +20,10 @@ class ItemAttributes extends React.PureComponent {
     }
 
     render() {
-        const { attribute, hideAttributeName, minHeight, fontSize, toggleButtons } = this.props;
+        const { attribute, hideAttributeName, fontSize, toggleButtons, isMini } = this.props;
         const { selectedAttributeBtnIndex } = this.state;
-        let attributeHeight = minHeight ? minHeight : "10rem";
 
-        return <div className="item-attribute" style={{ minHeight: attributeHeight, fontSize: fontSize }}>
+        return <div className={`item-attribute ${isMini ? "mini" : null}`} >
 
             {hideAttributeName != true ? <div className="item-attribute__name">{attribute.name}:</div> : null}
             <div className="item-attribute__buttons-container">

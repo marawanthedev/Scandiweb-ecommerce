@@ -33,7 +33,7 @@ class CartDropDown extends dependecies.React.PureComponent {
                 </div>
                 <div className="buttons-container">
 
-                    <Link to="/cart" style={{ textDecoration: "none", width: "calc((100% / 2) - 1rem)" }}>
+                    <Link to="/cart" onClick={() => ToggleCartDropDown()} style={{ textDecoration: "none", width: "calc((100% / 2) - 1rem)" }} >
                         <button className="buttons-container__button buttons-container__button__viewbag" style={{ width: "100%" }}>
                             View Bag
                         </button></Link>

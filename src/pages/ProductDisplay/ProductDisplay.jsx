@@ -9,23 +9,34 @@ class ProductDisplayPage extends dependecies.React.PureComponent {
         this.state = {
             selectedImageIndex: 0,
             attributeIndex: [],
-            attributeSelectionIndex: []
+            attributeSelectionIndex: [],
+            showAttributeSelectionAlert: false
         }
     }
-    handleAttributeSelection = (newAttributeIndex, newAttributeSelectionIndex, item) => {
+    handleAttributeSelection = (newAttributeIndex, newAttributeSelectionIndex) => {
 
         const { attributeIndex, attributeSelectionIndex } = this.state;
 
         //attributeIndex and attribute selection index are always corrosponding
         // meaning that selectionIndex[0] is at attribute selectionArray[0] and so on
-
         if (attributeIndex.indexOf(newAttributeIndex) === -1) {
+
             attributeIndex.push(newAttributeIndex)
             attributeSelectionIndex.push(newAttributeSelectionIndex)
         }
         else {
 
-            attributeSelectionIndex[newAttributeIndex] = newAttributeSelectionIndex;
+            let exisitngIndex = attributeIndex.indexOf(attributeIndex.find((item) => item == newAttributeIndex));
+
+            if (attributeSelectionIndex[exisitngIndex] !== newAttributeSelectionIndex) {
+
+                attributeSelectionIndex[exisitngIndex] = newAttributeSelectionIndex;
+
+            }
+            else {
+                attributeSelectionIndex[exisitngIndex] = undefined;
+            }
+
         }
 
         this.setState({
@@ -35,14 +46,69 @@ class ProductDisplayPage extends dependecies.React.PureComponent {
 
     }
 
+    confirmAttributeSelections = (attributes, attributeIndex, attributeSelectionIndex) => {
+        let allowAdditon = true
+
+        if (attributeIndex.length == attributes.length) {
+            attributeIndex.forEach((item) => item == undefined ? allowAdditon = false : null)
+            attributeSelectionIndex.forEach((item) => item == undefined ? allowAdditon = false : null)
+        }
+        else {
+            allowAdditon = false;
+        }
+
+
+        return allowAdditon;
+
+    }
+
+    handleAddToCartAction = (item, attributeIndex, attributeSelectionIndex,) => {
+        const { AddCartItem, addAttributeSelectionsIndex } = this.props;
+        item.cartId = Math.floor(Math.random() * 10000)
+
+        if (this.confirmAttributeSelections(item.attributes, attributeIndex, attributeSelectionIndex)) {
+
+            AddCartItem(item)
+            addAttributeSelectionsIndex(item, attributeIndex, attributeSelectionIndex)
+        }
+        else {
+            this.setState({
+                showAttributeSelectionAlert: true
+            })
+            setTimeout(() => {
+                this.setState({
+                    showAttributeSelectionAlert: false
+                })
+
+            }, 2500)
+        }
+
+
+    }
+
+    closeAlertPopUp = () => {
+        this.setState({
+            showAttributeSelectionAlert: false
+        })
+    }
+
     render() {
         const item = { ...this.props.location.state.item };
-        const { selectedImageIndex, attributeSelectionIndex, attributeIndex } = this.state
-        const { selectedCurrency, selectedCurrencySymbol, AddCartItem, addAttributeSelectionsIndex, } = this.props;
-        const { ItemAttribues } = dependecies;
+        const { selectedImageIndex, attributeSelectionIndex, attributeIndex, showAttributeSelectionAlert } = this.state
+        const { selectedCurrency, selectedCurrencySymbol, } = this.props;
+        const { ItemAttribues, WarningIcon, CloseIcon, Zoom } = dependecies;
 
-        const itemPrice = item.prices.filter((prices) => prices.currency === selectedCurrency)[0].amount;
+        const itemPrice = item.prices.filter((price) => price.currency === selectedCurrency)[0].amount;
         return <div className="productDisplayPage">
+
+            {showAttributeSelectionAlert ? <Zoom><div className="productDisplayPage__alert-box">
+                <div className="productDisplayPage__alert-box__closeIcon" onClick={() => this.closeAlertPopUp()} style={{ backgroundImage: `url(${CloseIcon})` }}></div>
+                <div className="productDisplayPage__alert-box__warningIcon" style={{ backgroundImage: `url(${WarningIcon})` }}></div>
+                <div className="productDisplayPage__alert-box__text">
+                    <div className="productDisplayPage__alert-box__text__header">Error</div>
+                    <div>Please select all attributes</div>
+                </div>
+            </div> </Zoom> : null}
             <div className="productDisplayPage__left-side">
                 <div className="productDisplayPage__left-side__images-gallery">
 
@@ -68,13 +134,7 @@ class ProductDisplayPage extends dependecies.React.PureComponent {
                     <div>Price:</div>
                     <div className="productDisplayPage__product__info__price__amount">{selectedCurrencySymbol}{itemPrice}</div>
                 </div>
-                <button className="productDisplayPage__product__info__btn" onClick={() => {
-                    item.cartId = Math.floor(Math.random() * 10000)
-                    console.log(this.state)
-                    AddCartItem(item)
-                    addAttributeSelectionsIndex(item, attributeIndex, attributeSelectionIndex)
-
-                }}> Add to Cart</button>
+                <button className="productDisplayPage__product__info__btn" onClick={() => this.handleAddToCartAction(item, attributeIndex, attributeSelectionIndex)}> Add to Cart</button>
                 <div className="productDisplayPage__product__info__description" dangerouslySetInnerHTML={{ __html: item.description }}>
 
                 </div>

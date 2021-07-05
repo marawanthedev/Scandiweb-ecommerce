@@ -15,6 +15,7 @@ class ProductDisplayPage extends dependecies.React.PureComponent {
     }
     handleAttributeSelection = (newAttributeIndex, newAttributeSelectionIndex) => {
 
+
         const { attributeIndex, attributeSelectionIndex } = this.state;
 
         //attributeIndex and attribute selection index are always corrosponding
@@ -42,7 +43,7 @@ class ProductDisplayPage extends dependecies.React.PureComponent {
         this.setState({
             attributeIndex: attributeIndex,
             attributeSelectionIndex: attributeSelectionIndex
-        })
+        }, () => console.log(this.state))
 
     }
 
@@ -67,7 +68,7 @@ class ProductDisplayPage extends dependecies.React.PureComponent {
         item.cartId = Math.floor(Math.random() * 10000)
 
         if (this.confirmAttributeSelections(item.attributes, attributeIndex, attributeSelectionIndex)) {
-
+            
             AddCartItem(item)
             addAttributeSelectionsIndex(item, attributeIndex, attributeSelectionIndex)
         }

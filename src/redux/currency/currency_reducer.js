@@ -22,8 +22,8 @@ const currencyReducer = (state = initState, action) => {
                 return {
 
                     ...state,
-                    selectedCurrency: action.newCurrencyInfo.name,
-                    selectedCurrencySymbol: action.newCurrencyInfo.symbol
+                    selectedCurrency:action.newCurrencyInfo.name,
+                    selectedCurrencySymbol:action.newCurrencyInfo.symbol
 
                 }
             }

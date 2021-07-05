@@ -5,7 +5,7 @@ class CurrencySwitcher extends React.PureComponent {
     constructor (props) {
         super(props);
     }
-    
+
     render() {
 
         const { currencies, currencySelectionUpdateCallBack } = this.props;

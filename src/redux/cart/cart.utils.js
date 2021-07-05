@@ -74,19 +74,15 @@ export const addAttributeSelections = (cartItems, item, attributeIndexes, attrib
 
 
     if (targetItem) {
-        console.log(targetItem)
         targetItem[targetItem.length - 1].attributes.forEach((attribute, outerIndex) => {
 
           
 
             if (attributeIndexes.indexOf(outerIndex) !== -1) {
-            // console.log(attribute)
-            // console.log(attributeIndexes)
-            // console.log(attributeSelectionIndexes)
+          
                 attribute.items.forEach((item, innerIndex) => {
 
                     if (innerIndex == attributeSelectionIndexes[outerIndex]) {
-                        console.log("in")
                         item.selected = true
                     } else {
                         item.selected = false
@@ -97,10 +93,8 @@ export const addAttributeSelections = (cartItems, item, attributeIndexes, attrib
         })
     }
 
-    // console.log(targetItem[0])
-    // console.log(cartItems.filter((item) => item.name == item.name)[cartItems.length - 1])
+
     cartItems.filter((item) => item.name == item.name)[cartItems.length - 1].attributes = targetItem[0].attributes
-    // console.log(cartItems)
 
     return cartItems;
 }

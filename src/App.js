@@ -1,5 +1,5 @@
 import './App.css';
-import CategoryPage from "./pages/category/category"
+import CategoryPage from "./pages/Category/category"
 import { Route } from "react-router-dom";
 import NavBar from "./container/Navbar/Navbar";
 import ProductDisplayPage from "./pages/ProductDisplay/ProductDisplay"

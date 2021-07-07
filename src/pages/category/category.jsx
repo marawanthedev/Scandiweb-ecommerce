@@ -1,5 +1,4 @@
 import React from "react"
-import "./Category.scss";
 import { AddCartItem, IncreaseItemQuantity, DecreaseItemQuantity, RemoveItem } from "./helpers/dependencies"
 import { getProducts } from "./helpers/dependencies"
 import dependecies from "./helpers/dependencies"

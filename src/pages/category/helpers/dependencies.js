@@ -1,6 +1,6 @@
 import React from "react"
 import CategoryItem from "../../../components/CategoryItem/CategoryItem"
-import "../Category.scss";
+import "../category.scss";
 import { connect } from "react-redux"
 export { AddCartItem, IncreaseItemQuantity, DecreaseItemQuantity, RemoveItem }
 from "../../../redux/cart/cart.actions"

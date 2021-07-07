@@ -45,7 +45,6 @@ class CategoryPage extends dependecies.React.PureComponent {
 
   }
   render() {
-    console.log(window.innerWidth)
     const { products, selectedCurrency, selectedCurrencySymbol, AddCartItem, IncreaseItemQuantity, DecreaseItemQuantity, RemoveItem, activeCategory, categorizedProducts } = this.props;
     const cartReduxCallBacks = { AddCartItem, IncreaseItemQuantity, DecreaseItemQuantity, RemoveItem }
     const { CategoryItem } = dependecies;

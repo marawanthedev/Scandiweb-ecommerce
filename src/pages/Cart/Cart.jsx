@@ -37,7 +37,7 @@ class CartPage extends dependecies.React.PureComponent {
                 <div className="cart__items-container">
                     {
                         cartItems.map((cartItem, index) => {
-                            return <div className="cart__item">
+                            return <div className="cart__item" key={index}>
                                 <div className="cart__item__left-side">
                                     <div className="cart__item__name">{cartItem.name}</div>
                                     <div className="cart__item__price">{selectedCurrencySymbol}{cartItem.prices.filter((price) => price.currency = selectedCurrency)[0].amount}</div>

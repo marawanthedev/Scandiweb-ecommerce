@@ -1,9 +1,8 @@
 .item-attribute {
     width: 100%;
     font-size: 1rem;
-    min-height: 10em;
-    max-height: 12em;
     margin: .5rem 0;
+    padding-bottom: .8em;
 
 
 
@@ -23,8 +22,8 @@
         align-items: center;
         overflow-x: auto;
         scroll-behavior: smooth;
-        padding-bottom: 1em;
 
+        padding-bottom: .5em;
 
         &::-webkit-scrollbar {
             top: 12rem;
@@ -74,6 +73,7 @@
             color: white;
         }
     }
+
 
 
     &.mini {

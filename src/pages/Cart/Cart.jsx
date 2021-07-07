@@ -46,7 +46,7 @@ class CartPage extends dependecies.React.PureComponent {
                                             cartItem.attributes.map((attribute, index) => {
                                                 const attributeSelection = attribute.items.filter((item) => item.selected == true)[0]
                                                 if (attributeSelection) {
-                                                    return <ItemAttribues key={index} hideAttributeName={false} attribute={attribute} attributeIndex={index} toggleButtons={false}
+                                                    return <ItemAttribues key={index}  hideAttributeName={false} attribute={attribute} attributeIndex={index} toggleButtons={false}
                                                         attributeSelectionIndex={attributeSelectionIndex[attributeSelectionIndex.length - 1]} item={cartItem} onClickCallBack={() => { }}></ItemAttribues>
                                                 }
                                             })

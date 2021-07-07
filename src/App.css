@@ -6,6 +6,7 @@
 .App {
     font-family: 'Raleway', sans-serif;
     padding: 0rem 8rem;
+ 
 }
 
 * {
@@ -20,6 +21,12 @@ html {
     width: 100%;
 }
 
+
+ @media only screen and (min-width: 1675px) {
+    .App {
+        padding: 0rem 16rem;
+    }
+}
 @media only screen and (max-width: 1104px) {
     html {
         font-size: 9px;
@@ -63,3 +70,4 @@ body,
 html {
     height: 100%;
 }
+

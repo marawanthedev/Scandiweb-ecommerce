@@ -25,7 +25,27 @@
         padding-bottom: 1em;
 
 
+        &::-webkit-scrollbar {
+            top: 12rem;
+            width: 11px;
+            height: 11px;
+            margin-top: 2em;
+        }
 
+        &::-webkit-scrollbar-thumb {
+            background: linear-gradient(95deg, #1d1f22 43%, #1d1f22 63%);
+            border-radius: 13px;
+        }
+
+        &::-webkit-scrollbar-thumb:hover {
+            background: #5ece7b;
+        }
+
+        &::-webkit-scrollbar-track {
+            background: #ffffff;
+            border-radius: 11px;
+            box-shadow: inset 7px 10px 12px #f0f0f0;
+        }
     }
 
     &__btn {
@@ -44,6 +64,10 @@
             margin: 0 1em;
         }
 
+        &:first-of-type {
+            margin-right: 1em;
+        }
+
         &.active {
             background-color: black;
             color: white;
@@ -59,7 +83,7 @@
 
     }
 
-    
-
-
+    &.mini &__buttons-container {
+        display: none;
+    }
 }

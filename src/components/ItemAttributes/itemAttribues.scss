@@ -2,7 +2,7 @@
     width: 100%;
     font-size: 1rem;
     min-height: 10em;
-    max-height: 10em;
+    max-height: 12em;
     margin: .5rem 0;
 
 
@@ -79,6 +79,7 @@
     &.mini {
 
         font-size: .55rem;
+        max-height: 10em;
 
         &__btn {
             width: 3.5rem;

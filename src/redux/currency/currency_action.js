@@ -5,8 +5,8 @@ export const toggleShowCurrencySwitcher = () => ({
     payload: null
 
 })
+
 export const updateSelectedCurrency = (newCurrencyInfo) => ({
-   
     type: CurrencyActionTypes.UPDATE_SELECTED_CURRENCY,
     newCurrencyInfo
 })

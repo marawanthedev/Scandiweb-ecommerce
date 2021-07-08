@@ -12,12 +12,10 @@ class ItemAttributes extends React.PureComponent {
 
     handleAttributeUISelection = (index, isItemSelected) => {
         const { onClickCallBack, attributeIndex, item } = this.props;
-
-        console.log(isItemSelected)
-        // making sure that the selection state in redux and local state are similar
-        if (index != this.state.selectedAttributeBtnIndex && isItemSelected != true) { this.setState({ selectedAttributeBtnIndex: index }) }
+        if (index != this.state.selectedAttributeBtnIndex && isItemSelected != true) {
+            this.setState({ selectedAttributeBtnIndex: index })
+        }
         else { this.setState({ selectedAttributeBtnIndex: null }) }
-
         onClickCallBack(attributeIndex, index, item)
     }
 
@@ -27,18 +25,24 @@ class ItemAttributes extends React.PureComponent {
 
         return <div className={`item-attribute ${isMini ? "mini" : null}`} >
 
-            {hideAttributeName != true ? <div className="item-attribute__name">{attribute.name}:</div> : null}
+            {hideAttributeName != true ?
+                <div className="item-attribute__name">{attribute.name}:</div>
+                : null}
             <div className="item-attribute__buttons-container">
-                {attribute.items.map((item, index) => <button className={`item-attribute__btn ${index == selectedAttributeBtnIndex || item.selected == true ? "active" : null}`} key={index} onClick={() => {
-                    if (toggleButtons) {
-                        this.handleAttributeUISelection(index, item.selected)
-                    }
-                }}
 
-                >{item.displayValue}</button>)}
+                {attribute.items.map((item, index) => (
+                    <button className={`item-attribute__btn ${index == selectedAttributeBtnIndex || item.selected == true ? "active" : null}`} key={index} onClick={() => {
+                        if (toggleButtons) {
+                            this.handleAttributeUISelection(index, item.selected)
+                        }
+                    }}
+                    >{item.displayValue}
+                    </button>
+                ))}
+
             </div>
-
         </div>
     }
 }
+
 export default ItemAttributes;

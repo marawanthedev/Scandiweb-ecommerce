@@ -9,12 +9,10 @@ export const getProducts = () => {
             .query({
                 query: GET_PORDUCTS
             }).then(result => {
-
                 dispatch(productsLoaded(result.data))
             })
     }
 }
-
 
 export const updateCategory = (category) => ({
     type: CategoryActionTypes.UPDATE_CATEGORY,

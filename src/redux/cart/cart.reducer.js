@@ -18,7 +18,6 @@ const cartReducer = (state = INITIAL_STATE, action) => {
             {
                 return {
                     ...state,
-
                     cartItems: addCartItemUtil(state.cartItems, action.payload),
                 };
             }
@@ -35,7 +34,6 @@ const cartReducer = (state = INITIAL_STATE, action) => {
         case CartActionTypes.ADD_ATTRIBUTE_SELECTION_INDEX:
             {
                 return {
-
                     ...state,
                     cartItems: addAttributeSelections(state.cartItems, action.item, action.attributeIndex,
                         action.attributeSelectionIndex),
@@ -57,7 +55,6 @@ const cartReducer = (state = INITIAL_STATE, action) => {
             {
 
                 return {
-
                     ...state,
                     cartItems: removeCartItemUtil(state.cartItems, action.payload)
                 }

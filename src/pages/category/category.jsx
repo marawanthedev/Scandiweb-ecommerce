@@ -1,14 +1,13 @@
 import React from "react"
-import { AddCartItem, IncreaseItemQuantity, DecreaseItemQuantity, RemoveItem } from "./helpers/dependencies"
-import { getProducts } from "./helpers/dependencies"
-import dependecies from "./helpers/dependencies"
-class CategoryPage extends dependecies.React.PureComponent {
+import CategoryItem from "../../components/CategoryItem/CategoryItem"
+import "./category.scss";
+import { connect } from "react-redux"
+import { AddCartItem, IncreaseItemQuantity, DecreaseItemQuantity, RemoveItem }
+  from "../../redux/cart/cart.actions"
+import { getProducts }
+  from "../../redux/category/category_action"
 
-
-
-  constructor (props) {
-    super(props);
-  }
+class CategoryPage extends React.PureComponent {
 
   componentWillMount() {
     this.props.getProducts()
@@ -17,37 +16,26 @@ class CategoryPage extends dependecies.React.PureComponent {
   getProducts = (categorizedProducts, products, activeCategory, selectedCurrencySymbol, selectedCurrency, cartReduxCallBacks, CategoryItem) => {
 
     if (activeCategory != "all") {
-
-      console.log(categorizedProducts)
       if (categorizedProducts) {
         return categorizedProducts[activeCategory] ? categorizedProducts[activeCategory].map((item, index) =>
           <CategoryItem item={item} key={index} cartReduxCallBacks={cartReduxCallBacks}
             selectedCurrencySymbol={selectedCurrencySymbol}
             selectedCurrency={selectedCurrency}></CategoryItem>
         ) : null
-
       }
-
-
     }
     else {
-
       return products ? products.map((item, index) =>
         <CategoryItem item={item} key={index} cartReduxCallBacks={cartReduxCallBacks}
           selectedCurrencySymbol={selectedCurrencySymbol}
           selectedCurrency={selectedCurrency} ></CategoryItem>
       ) : null
-
     }
-
-
-
-
   }
+
   render() {
     const { products, selectedCurrency, selectedCurrencySymbol, AddCartItem, IncreaseItemQuantity, DecreaseItemQuantity, RemoveItem, activeCategory, categorizedProducts } = this.props;
     const cartReduxCallBacks = { AddCartItem, IncreaseItemQuantity, DecreaseItemQuantity, RemoveItem }
-    const { CategoryItem } = dependecies;
     return (
       <div className="categoryPage" >
         <div className="categoryPage__header">
@@ -60,19 +48,17 @@ class CategoryPage extends dependecies.React.PureComponent {
       </div>
     )
   }
-
 }
 
 const mapStatToProps = ({ categoryReducer, currencyReducer }) => ({
-
   products: categoryReducer.products,
   selectedCurrency: currencyReducer.selectedCurrency,
   selectedCurrencySymbol: currencyReducer.selectedCurrencySymbol,
   activeCategory: categoryReducer.activeCategory,
   categorizedProducts: categoryReducer.categorizedProducts
 })
-const mapDispatchToProps = (dispatch) => ({
 
+const mapDispatchToProps = (dispatch) => ({
   AddCartItem: (cartItem) => (dispatch(AddCartItem(cartItem))),
   IncreaseItemQuantity: () => (dispatch(IncreaseItemQuantity())),
   DecreaseItemQuantity: () => (dispatch(DecreaseItemQuantity())),
@@ -80,4 +66,4 @@ const mapDispatchToProps = (dispatch) => ({
   getProducts: () => (dispatch(getProducts()))
 })
 
-export default dependecies.connect(mapStatToProps, mapDispatchToProps)(CategoryPage);
+export default connect(mapStatToProps, mapDispatchToProps)(CategoryPage);

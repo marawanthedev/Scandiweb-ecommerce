@@ -1,18 +1,25 @@
-
+import React from "react"
+import Logo from "../../assets/svg/a-logo.svg"
+import USD from "../../assets/svg/USD.svg"
+import JPY from "../../assets/svg/JPY.svg"
+import GBP from "../../assets/svg/GBP.svg"
+import ChevronIcon from "../../assets/svg/chevron.svg"
+import Zoom from 'react-reveal/Zoom'
+import Bounce from 'react-reveal/Bounce'
+import { connect } from "react-redux"
+import CartIcon from "../../components/cart-icon/cart-icon.component"
+import CartDropDown from "../cart-dropdown/cart-dropdown.component";
+import "./Navbar.scss"
+import { Link } from "react-router-dom";
 import CurrencySwitcher from "../../components/CurrencySwitcher/CurrencySwitcher"
 import { toggleShowCurrencySwitcher, updateSelectedCurrency } from "../../redux/currency/currency_action"
 import { ToggleCartDropDown } from "../../redux/cart/cart.actions";
 import { getProducts, updateCategory } from "../../redux/category/category_action"
-import dependecies from "./helpers/dependencies"
 
-class Navbar extends dependecies.React.PureComponent {
-
-    constructor (props) {
-        super(props);
-        this.state = {}
-    }
+class Navbar extends React.PureComponent {
 
     handleNewCurrencySelection = (newCurrencyInfo) => {
+        this.props.toggleShowCurrencySwitcher()
         this.props.updateSelectedCurrency(newCurrencyInfo)
     }
     manageCurrencySwitcher = (currencies) => {
@@ -23,13 +30,8 @@ class Navbar extends dependecies.React.PureComponent {
         this.props.getProducts()
     }
     render() {
-        const { React, Logo, USD, JPY, GBP, ChevronIcon, Zoom, Bounce, CartIcon, CartDropDown } = dependecies
+
         const { products } = this.props;
-
-        if (products) {
-            products.forEach((product) => product)
-        }
-
         const currencies = [
             {
                 icon: USD,
@@ -50,20 +52,18 @@ class Navbar extends dependecies.React.PureComponent {
         ];
         const currentCurrency = currencies.filter((currency) => currency.text == this.props.selectedCurrency)[0];
         const { showCurrencyswitcher, toggleShowCurrencySwitcher, showCart, ToggleCartDropDown, itemCount, categories, updateCategory, activeCategory } = this.props;
-        const { Link } = dependecies
+
+        if (products) {
+            products.forEach((product) => product)
+        }
         return (
-
             <div className="navbar">
-
-
                 <Zoom right cascade>
                     <div className="navbar__section navbar__section__left">
-                        {/* border-bottom: 2px solid rgba(94, 206, 123, 1); */}
-
                         {categories ? categories.map((category, index) =>
                             <Link to="/" key={index} style={{ textDecoration: "none", color: "black", }}>
-                                <div onClick={() => updateCategory(category)} className={`navbar__item navbar__section__left__item ${activeCategory == category ? "active" : null}`}>{category}</div></Link>) : null}
-
+                                <div onClick={() => updateCategory(category)} className={`navbar__item navbar__section__left__item ${activeCategory == category ? "active" : null}`}>{category}</div>
+                            </Link>) : null}
                     </div>
                 </Zoom>
 
@@ -74,41 +74,35 @@ class Navbar extends dependecies.React.PureComponent {
                         </Link>
                     </div>
                 </Bounce>
-                <div className="navbar__section navbar__section__right">
 
+                <div className="navbar__section navbar__section__right">
                     {
                         this.manageCurrencySwitcher(currencies)
                     }
-                    {/* onClick={() => {if( showCurrencyswitcher==true){toggleShowCurrencySwitcher()}}} */}
-                    {showCart ? <div>
-                        <div className="cart-overlay" onClick={() => ToggleCartDropDown()}></div>
-                        <CartDropDown itemCount={itemCount}></CartDropDown>
-                    </div> : null}
 
-
+                    {showCart ?
+                        <div>
+                            <div className="cart-overlay" onClick={() => ToggleCartDropDown()}></div>
+                            <CartDropDown itemCount={itemCount}></CartDropDown>
+                        </div> : null}
                     <div className="navbar__item navbar__section__right__item">
-
-                        {showCurrencyswitcher ? <div className="currency-overlay" onClick={() => toggleShowCurrencySwitcher()}></div> : null}
-
-                        <img src={currentCurrency.icon} alt="" className="navbar__icon navbar__icon__currencys" />
+                        {showCurrencyswitcher ?
+                            <div className="currency-overlay" onClick={() => toggleShowCurrencySwitcher()}>
+                            </div> : null}
+                        <img src={currentCurrency.icon} onClick={toggleShowCurrencySwitcher} alt="" className="navbar__icon navbar__icon__currencys" />
                         <img src={ChevronIcon} alt=""
-
                             className={`navbar__icon 
                           navbar__icon__small navbar__icon__chevron ${showCurrencyswitcher ? "navbar__icon__chevron__rotate" : null}`} onClick={() => toggleShowCurrencySwitcher()} />
                     </div>
                     <div className="navbar__item navbar__section__right__item">
-
-
                         < CartIcon itemCount={itemCount} ToggleCartDropDown={ToggleCartDropDown}></CartIcon>
-
                     </div>
-
                 </div>
-
             </div>
         )
     }
 }
+
 const mapStateToProps = ({ currencyReducer, cartReducer, categoryReducer }) => ({
     selectedCurrency: currencyReducer.selectedCurrency,
     showCurrencyswitcher: currencyReducer.showCurrencyswitcher,
@@ -117,14 +111,14 @@ const mapStateToProps = ({ currencyReducer, cartReducer, categoryReducer }) => (
     products: categoryReducer.products,
     categories: categoryReducer.categories,
     activeCategory: categoryReducer.activeCategory,
-
 })
+
 const mapDispatchToProps = (dispatch) => ({
     toggleShowCurrencySwitcher: () => dispatch(toggleShowCurrencySwitcher()),
     updateSelectedCurrency: (newCurrencySelection) => dispatch(updateSelectedCurrency(newCurrencySelection)),
     ToggleCartDropDown: () => dispatch(ToggleCartDropDown()),
     getProducts: () => (dispatch(getProducts())),
     updateCategory: (category) => (dispatch(updateCategory(category)))
-
 })
-export default dependecies.connect(mapStateToProps, mapDispatchToProps)(Navbar);
+
+export default connect(mapStateToProps, mapDispatchToProps)(Navbar);

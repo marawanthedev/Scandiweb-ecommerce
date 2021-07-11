@@ -15,7 +15,8 @@ class ProductDisplayPage extends React.PureComponent {
       selectedImageIndex: 0,
       attributeIndex: [],
       attributeSelectionIndex: [],
-      showAttributeSelectionAlert: false
+      showAttributeSelectionAlert: false,
+      item: null
     };
   }
 
@@ -99,8 +100,15 @@ class ProductDisplayPage extends React.PureComponent {
     });
   };
 
+  componentWillMount() {
+    this.setState({ item: { ...this.props.location.state.item } });
+  }
+  componentDidMount() {
+    const { item } = this.state;
+    this.itemDesc.innerHTML = item.description;
+  }
   render() {
-    const item = { ...this.props.location.state.item };
+    const { item } = this.state;
     const {
       selectedImageIndex,
       attributeSelectionIndex,
@@ -196,9 +204,10 @@ class ProductDisplayPage extends React.PureComponent {
               Add to Cart
             </button>
           ) : null}
+
           <div
             className="productDisplayPage__product__info__description"
-            dangerouslySetInnerHTML={{ __html: item.description }}
+            ref={desc => (this.itemDesc = desc)}
           ></div>
         </div>
       </div>

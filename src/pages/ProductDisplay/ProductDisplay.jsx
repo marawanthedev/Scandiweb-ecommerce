@@ -5,8 +5,11 @@ import { connect } from "react-redux";
 import WarningIcon from "../../assets/svg/warning.svg";
 import CloseIcon from "../../assets/svg/close.svg";
 import Zoom from "react-reveal/Zoom";
-import { AddCartItem } from "../../redux/cart/cart.actions";
-import { addAttributeSelectionsIndex } from "../../redux/cart/cart.actions";
+import {
+  AddCartItem,
+  checkAttributeSelectionDuplication,
+  addAttributeSelectionsIndex
+} from "../../redux/cart/cart.actions";
 
 class ProductDisplayPage extends React.PureComponent {
   constructor(props) {
@@ -69,7 +72,11 @@ class ProductDisplayPage extends React.PureComponent {
   };
 
   handleAddToCartAction = (item, attributeIndex, attributeSelectionIndex) => {
-    const { AddCartItem, addAttributeSelectionsIndex } = this.props;
+    const {
+      AddCartItem,
+      addAttributeSelectionsIndex,
+      checkAttributeSelectionDuplication
+    } = this.props;
     item.cartId = Math.floor(Math.random() * 10000);
 
     if (
@@ -85,6 +92,7 @@ class ProductDisplayPage extends React.PureComponent {
         attributeIndex,
         attributeSelectionIndex
       );
+      checkAttributeSelectionDuplication(item);
     } else {
       this.setState({ showAttributeSelectionAlert: true });
       setTimeout(
@@ -229,7 +237,9 @@ const mapDispatchToProps = dispatch => ({
   ) =>
     dispatch(
       addAttributeSelectionsIndex(item, attributeIndex, attributeSelectionIndex)
-    )
+    ),
+  checkAttributeSelectionDuplication: newItem =>
+    dispatch(checkAttributeSelectionDuplication(newItem))
 });
 
 export default connect(mapStatToProps, mapDispatchToProps)(ProductDisplayPage);

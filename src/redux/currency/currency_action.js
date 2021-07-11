@@ -1,12 +1,11 @@
-import { CurrencyActionTypes } from "./currency_types"
+import { CurrencyActionTypes } from "./currency_types";
 
 export const toggleShowCurrencySwitcher = () => ({
-    type: CurrencyActionTypes.TOGGLE_SHOW_CURRENCY_SWITCHER,
-    payload: null
+  type: CurrencyActionTypes.TOGGLE_SHOW_CURRENCY_SWITCHER,
+  payload: null
+});
 
-})
-
-export const updateSelectedCurrency = (newCurrencyInfo) => ({
-    type: CurrencyActionTypes.UPDATE_SELECTED_CURRENCY,
-    newCurrencyInfo
-})
+export const updateSelectedCurrency = newCurrencyInfo => ({
+  type: CurrencyActionTypes.UPDATE_SELECTED_CURRENCY,
+  newCurrencyInfo
+});

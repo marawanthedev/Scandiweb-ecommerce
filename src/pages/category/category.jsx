@@ -24,33 +24,45 @@ class CategoryPage extends React.PureComponent {
     cartReduxCallBacks,
     CategoryItem
   ) => {
-    if (activeCategory != "all") {
-      if (categorizedProducts) {
-        return categorizedProducts[activeCategory]
-          ? categorizedProducts[activeCategory].map((item, index) => (
-              <CategoryItem
-                item={item}
-                key={index}
-                cartReduxCallBacks={cartReduxCallBacks}
-                selectedCurrencySymbol={selectedCurrencySymbol}
-                selectedCurrency={selectedCurrency}
-              ></CategoryItem>
-            ))
-          : null;
-      }
-    } else {
-      return products
-        ? products.map((item, index) => (
-            <CategoryItem
-              item={item}
-              key={index}
-              cartReduxCallBacks={cartReduxCallBacks}
-              selectedCurrencySymbol={selectedCurrencySymbol}
-              selectedCurrency={selectedCurrency}
-            ></CategoryItem>
-          ))
-        : null;
-    }
+    // if (activeCategory != "all") {
+    //   if (categorizedProducts) {
+    //     return categorizedProducts[activeCategory]
+    //       ? categorizedProducts[activeCategory].map((item, index) => (
+    //           <CategoryItem
+    //             item={item}
+    //             key={index}
+    //             cartReduxCallBacks={cartReduxCallBacks}
+    //             selectedCurrencySymbol={selectedCurrencySymbol}
+    //             selectedCurrency={selectedCurrency}
+    //           ></CategoryItem>
+    //         ))
+    //       : null;
+    //   }
+    // } else {
+    //   return products
+    //     ? products.map((item, index) => (
+    //         <CategoryItem
+    //           item={item}
+    //           key={index}
+    //           cartReduxCallBacks={cartReduxCallBacks}
+    //           selectedCurrencySymbol={selectedCurrencySymbol}
+    //           selectedCurrency={selectedCurrency}
+    //         ></CategoryItem>
+    //       ))
+    //     : null;
+    // }
+
+    return products
+      ? products.map((item, index) => (
+          <CategoryItem
+            item={item}
+            key={index}
+            cartReduxCallBacks={cartReduxCallBacks}
+            selectedCurrencySymbol={selectedCurrencySymbol}
+            selectedCurrency={selectedCurrency}
+          ></CategoryItem>
+        ))
+      : null;
   };
 
   render() {
@@ -94,8 +106,7 @@ const mapStatToProps = ({ categoryReducer, currencyReducer }) => ({
   products: categoryReducer.products,
   selectedCurrency: currencyReducer.selectedCurrency,
   selectedCurrencySymbol: currencyReducer.selectedCurrencySymbol,
-  activeCategory: categoryReducer.activeCategory,
-  categorizedProducts: categoryReducer.categorizedProducts
+  activeCategory: categoryReducer.activeCategory
 });
 
 const mapDispatchToProps = dispatch => ({

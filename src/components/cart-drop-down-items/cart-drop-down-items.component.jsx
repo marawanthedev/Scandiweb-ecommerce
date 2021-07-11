@@ -39,13 +39,14 @@ class CartItem extends React.PureComponent {
                                 })
                             }
                         </div>
-
                     </div>
 
                     <div className="cart-item__content__quantity-buttons-container">
-                        <IconButton callBack={IncreaseItemQuantity} Icon={Plus} callBackParam={item}> </IconButton>
+                        <IconButton callBack={IncreaseItemQuantity} Icon={Plus} callBackParam={item}>
+                        </IconButton>
                         <span className="cart-item__content__quantity">{quantity}</span>
-                        <IconButton callBack={DecreaseItemQuantity} Icon={Minus} callBackParam={item}> </IconButton>
+                        <IconButton callBack={DecreaseItemQuantity} Icon={Minus} callBackParam={item}>
+                        </IconButton>
                     </div>
                 </div>
 

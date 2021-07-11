@@ -12,7 +12,8 @@ class CartIcon extends React.PureComponent {
                     itemCount !== 0 ?
                         <div className="item-count-circle">
                             <span className="item-count ">{itemCount}</span>
-                        </div> : null
+                        </div>
+                        : null
                 }
             </div>
         )

@@ -22,11 +22,14 @@ class CartDropDown extends React.PureComponent {
                     </div>
                     <ul className="cart-items">
 
-                        {cartItems.length > 0 ? cartItems.map(({ ...cartData }, index) => {
-                            return (
-                                <CartItem key={index} selectedCurrency={selectedCurrency} ToggleCartDropDownCallBack={ToggleCartDropDown} selectedCurrencySymbol={selectedCurrencySymbol} DecreaseItemQuantity={DecreaseItemQuantity} IncreaseItemQuantity={IncreaseItemQuantity}    {...cartData} item={cartData}>
-                                </CartItem>)
-                        }) : null}
+                        {
+                            cartItems.length > 0 ? cartItems.map(({ ...cartData }, index) => {
+                                return (
+                                    <CartItem key={index} selectedCurrency={selectedCurrency} ToggleCartDropDownCallBack={ToggleCartDropDown} selectedCurrencySymbol={selectedCurrencySymbol} DecreaseItemQuantity={DecreaseItemQuantity} IncreaseItemQuantity={IncreaseItemQuantity}    {...cartData} item={cartData}>
+                                    </CartItem>)
+                            })
+                                : null
+                        }
 
                     </ul>
                     <div className="cart-dropdown__total-price">

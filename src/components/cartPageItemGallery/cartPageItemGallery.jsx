@@ -45,13 +45,13 @@ class CartPageItemGallery extends React.PureComponent {
                             <div className="cart__item__gallery__next" onClick={() => this.nextImage(gallery, imageSelectionIndex)}>
                                 <img src={LightChevron} alt="" />
                             </div>
-                        </div> : null
+                        </div>
+                        : null
                 }
 
             </div>
         )
     }
-
 }
 
 export default CartPageItemGallery;

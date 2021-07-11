@@ -122,8 +122,12 @@ class ProductDisplayPage extends React.PureComponent {
                         <div>Price:</div>
                         <div className="productDisplayPage__product__info__price__amount">{selectedCurrencySymbol}{itemPrice}</div>
                     </div>
-                    <button className="productDisplayPage__product__info__btn" onClick={() => this.handleAddToCartAction(item, attributeIndex, attributeSelectionIndex)}> Add to Cart
-                    </button>
+                    {
+                        item.inStock ?
+                            <button className="productDisplayPage__product__info__btn" onClick={() => this.handleAddToCartAction(item, attributeIndex, attributeSelectionIndex)}> Add to Cart
+                            </button>
+                            : null
+                    }
                     <div className="productDisplayPage__product__info__description" dangerouslySetInnerHTML={{ __html: item.description }}>
                     </div>
                 </div>

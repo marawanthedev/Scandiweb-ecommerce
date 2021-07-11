@@ -76,19 +76,26 @@ class Navbar extends React.PureComponent {
                 </Bounce>
 
                 <div className="navbar__section navbar__section__right">
+
                     {
                         this.manageCurrencySwitcher(currencies)
                     }
 
-                    {showCart ?
-                        <div>
-                            <div className="cart-overlay" onClick={() => ToggleCartDropDown()}></div>
-                            <CartDropDown itemCount={itemCount}></CartDropDown>
-                        </div> : null}
+                    {
+                        showCart ?
+                            <div>
+                                <div className="cart-overlay" onClick={() => ToggleCartDropDown()}></div>
+                                <CartDropDown itemCount={itemCount}></CartDropDown>
+                            </div>
+                            : null
+                    }
                     <div className="navbar__item navbar__section__right__item">
-                        {showCurrencyswitcher ?
-                            <div className="currency-overlay" onClick={() => toggleShowCurrencySwitcher()}>
-                            </div> : null}
+                        {
+                            showCurrencyswitcher ?
+                                <div className="currency-overlay" onClick={() => toggleShowCurrencySwitcher()}>
+                                </div>
+                                : null
+                        }
                         <img src={currentCurrency.icon} onClick={toggleShowCurrencySwitcher} alt="" className="navbar__icon navbar__icon__currencys" />
                         <img src={ChevronIcon} alt=""
                             className={`navbar__icon 

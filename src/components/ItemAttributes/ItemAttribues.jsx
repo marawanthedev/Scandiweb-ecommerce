@@ -25,16 +25,17 @@ class ItemAttributes extends React.PureComponent {
 
         return <div className={`item-attribute ${isMini ? "mini" : null}`} >
 
-            {hideAttributeName != true ?
-                <div className="item-attribute__name">{attribute.name}:</div>
-                : null}
+            {
+                hideAttributeName != true ?
+                    <div className="item-attribute__name">{attribute.name}:</div>
+                    : null
+            }
             <div className="item-attribute__buttons-container">
 
                 {attribute.items.map((item, index) => (
                     <button className={`item-attribute__btn ${index == selectedAttributeBtnIndex || item.selected == true ? "active" : null}`} key={index} onClick={() => {
-                        if (toggleButtons) {
+                        if (toggleButtons)
                             this.handleAttributeUISelection(index, item.selected)
-                        }
                     }}
                     >{item.displayValue}
                     </button>

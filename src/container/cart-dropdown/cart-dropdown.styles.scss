@@ -1,6 +1,6 @@
 .cart-dropdown {
     position: absolute;
-    width: 32.5rem;
+    min-width: 45rem;
     height: 54rem;
     display: flex;
     flex-direction: column;
@@ -12,11 +12,13 @@
     z-index: 25;
     opacity: 1;
     animation: dropDown 0.3s ease-in-out;
+
     &__items-count-container {
         font-size: 1.6rem;
         font-weight: bold;
         padding: 1rem 2rem;
     }
+
     &__total-price {
         font-family: 'Roboto', sans-serif;
         font-weight: bold;
@@ -26,9 +28,11 @@
         align-items: center;
         margin-top: 4rem;
     }
+
     &__items-count {
         font-weight: 400;
     }
+
     .cart-items {
         height: 34rem;
         display: flex;
@@ -36,11 +40,14 @@
         // this will hide the scroll bar in case that of no overflow
         padding: 2rem 2rem;
         overflow-y: auto;
+
+
         // overflow-y: scroll;
         &::-webkit-scrollbar {
             display: none;
         }
     }
+
     .cart-btn {
         margin-top: auto;
         width: 80%;
@@ -48,12 +55,14 @@
         background-color: black;
         position: absolute;
         bottom: 2rem;
+
         &:hover {
             border: 1px solid black;
             color: black;
             background-color: white;
         }
     }
+
     .buttons-container {
         display: flex;
         justify-content: flex-start;
@@ -63,6 +72,7 @@
         bottom: 2rem;
         width: 100%;
         padding: 0 1.5rem;
+
         &__button {
             width: calc((100% / 2) - 1rem);
             height: 4.3rem;
@@ -74,11 +84,13 @@
             font-size: 1.5rem;
             border: none;
             outline: none;
+
             &__viewbag {
                 border: 1px solid rgba(29, 31, 34, 1);
                 color: black;
                 background-color: white;
             }
+
             &__checkout {
                 color: white;
                 background-color: rgba(94, 206, 123, 1);
@@ -92,6 +104,7 @@
         opacity: 0.4;
         transform: translateY(-2rem);
     }
+
     100% {
         opacity: 1;
         transform: translateY(0rem);

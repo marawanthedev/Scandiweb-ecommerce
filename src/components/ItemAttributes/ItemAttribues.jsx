@@ -1,5 +1,7 @@
 import React from "react";
 import "./itemAttribues.scss";
+import Zoom from "react-reveal/Zoom";
+import Fade from "react-reveal/Fade";
 
 class ItemAttributes extends React.PureComponent {
   constructor(props) {
@@ -29,24 +31,29 @@ class ItemAttributes extends React.PureComponent {
     return (
       <div className={`item-attribute ${isMini ? "mini" : null}`}>
         {hideAttributeName != true ? (
-          <div className="item-attribute__name">{attribute.name}:</div>
+          <Fade left>
+            <div className="item-attribute__name">{attribute.name}:</div>;
+          </Fade>
         ) : null}
         <div className="item-attribute__buttons-container">
           {attribute.items.map((item, index) => (
-            <button
-              className={`item-attribute__btn ${
-                index == selectedAttributeBtnIndex || item.selected == true
-                  ? "active"
-                  : null
-              }`}
-              key={index}
-              onClick={() => {
-                if (toggleButtons)
-                  this.handleAttributeUISelection(index, item.selected);
-              }}
-            >
-              {item.displayValue}
-            </button>
+            <Zoom>
+              <button
+                className={`item-attribute__btn ${
+                  index == selectedAttributeBtnIndex || item.selected == true
+                    ? "active"
+                    : null
+                }`}
+                key={index}
+                onClick={() => {
+                  if (toggleButtons)
+                    this.handleAttributeUISelection(index, item.selected);
+                }}
+              >
+                {item.displayValue}
+              </button>
+              ;
+            </Zoom>
           ))}
         </div>
       </div>

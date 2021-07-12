@@ -2,6 +2,7 @@ import React from "react";
 import "./CategoryItem.scss";
 import cart from "../../assets/svg/customizableShoppingCart.svg";
 import { Link } from "react-router-dom";
+import Zoom from "react-reveal/Zoom";
 
 class CategoryItem extends React.PureComponent {
   handleCartAddition = item => {
@@ -28,52 +29,55 @@ class CategoryItem extends React.PureComponent {
     };
 
     return (
-      <div className="category-item">
-        {inStock === false ? (
-          <div className="category-item__out-of-stock-overlay">
-            <span className="category-item__out-of-stock-overlay__text">
-              Out of stock
-            </span>
-          </div>
-        ) : null}
+      <Zoom bottom left>
+        <div className="category-item">
+          {inStock === false ? (
+            <div className="category-item__out-of-stock-overlay">
+              <span className="category-item__out-of-stock-overlay__text">
+                Out of stock
+              </span>
+            </div>
+          ) : null}
 
-        <Link
-          ref={link => (this.redirectLink = link)}
-          className="category-item__link"
-          to={redirectionInfo}
-        >
-          <div className="category-item__overlay"></div>
-        </Link>
-        <div
-          className="category-item__img"
-          style={{ backgroundImage: `url(${gallery[0]})` }}
-        ></div>
-
-        <div className="category-item__text">
-          <div className="category-item__text__description">{name}</div>
-          <div className="category-item__text__price">
-            {selectedCurrencySymbol}
-            {
-              prices.filter(price => price.currency === selectedCurrency)[0][
-                "amount"
-              ]
-            }
-          </div>
-        </div>
-
-        {inStock ? (
-          <div
-            className="category-item__add-to-cart-btn"
-            onClick={() => this.handleCartAddition(item)}
+          <Link
+            ref={link => (this.redirectLink = link)}
+            className="category-item__link"
+            to={redirectionInfo}
           >
-            <img
-              className="category-item__add-to-cart-btn__cart-icon"
-              src={cart}
-              alt=""
-            />
+            <div className="category-item__overlay"></div>
+          </Link>
+          <div
+            className="category-item__img"
+            style={{ backgroundImage: `url(${gallery[0]})` }}
+          ></div>
+
+          <div className="category-item__text">
+            <div className="category-item__text__description">{name}</div>
+            <div className="category-item__text__price">
+              {selectedCurrencySymbol}
+              {
+                prices.filter(price => price.currency === selectedCurrency)[0][
+                  "amount"
+                ]
+              }
+            </div>
           </div>
-        ) : null}
-      </div>
+
+          {inStock ? (
+            <div
+              className="category-item__add-to-cart-btn"
+              onClick={() => this.handleCartAddition(item)}
+            >
+              <img
+                className="category-item__add-to-cart-btn__cart-icon"
+                src={cart}
+                alt=""
+              />
+            </div>
+          ) : null}
+        </div>
+        ;
+      </Zoom>
     );
   }
 }

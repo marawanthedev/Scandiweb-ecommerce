@@ -10,6 +10,7 @@ import {
   DecreaseItemQuantity,
   IncreaseItemQuantity
 } from "../../redux/cart/cart.actions";
+import Fade from "react-reveal/Fade";
 
 class CartPage extends React.PureComponent {
   constructor(props) {
@@ -46,15 +47,17 @@ class CartPage extends React.PureComponent {
             return (
               <div className="cart__item" key={index}>
                 <div className="cart__item__left-side">
-                  <div className="cart__item__name">{cartItem.name}</div>
-                  <div className="cart__item__price">
-                    {selectedCurrencySymbol}
-                    {
-                      cartItem.prices.filter(
-                        price => (price.currency = selectedCurrency)
-                      )[0].amount
-                    }
-                  </div>
+                  <Fade left>
+                    <div className="cart__item__name">{cartItem.name}</div>
+                    <div className="cart__item__price">
+                      {selectedCurrencySymbol}
+                      {
+                        cartItem.prices.filter(
+                          price => (price.currency = selectedCurrency)
+                        )[0].amount
+                      }
+                    </div>
+                  </Fade>
                   <div className="cart__item__attributes">
                     {cartItem.attributes.map((attribute, index) => {
                       const attributeSelection = attribute.items.filter(

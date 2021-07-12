@@ -4,14 +4,12 @@ import {
   decreaseCartItemQuantityUtil,
   increaseCartItemQuantityUtil,
   removeCartItemUtil,
-  addAttributeSelections,
-  compareAttributes
+  addAttributeSelections
 } from "./cart.utils";
 
 const INITIAL_STATE = {
   showCart: false,
-  cartItems: [],
-  carts: []
+  cartItems: []
 };
 const cartReducer = (state = INITIAL_STATE, action) => {
   switch (action.type) {
@@ -36,7 +34,7 @@ const cartReducer = (state = INITIAL_STATE, action) => {
     case CartActionTypes.ADD_ATTRIBUTE_SELECTION_INDEX: {
       return {
         ...state,
-          cartItems: addAttributeSelections(
+        cartItems: addAttributeSelections(
           state.cartItems,
           action.item,
           action.attributeIndex,

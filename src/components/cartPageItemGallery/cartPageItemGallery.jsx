@@ -1,6 +1,7 @@
 import React from "react";
 import LightChevron from "../../assets/svg/lightChevron.svg";
 import "./cartPageItemGallery.scss";
+import Fade from "react-reveal/Fade";
 
 class CartPageItemGallery extends React.PureComponent {
   constructor(props) {
@@ -30,27 +31,30 @@ class CartPageItemGallery extends React.PureComponent {
     const { imageSelectionIndex } = this.state;
 
     return (
-      <div
-        className="cart__item__gallery"
-        style={{ backgroundImage: `url(${gallery[imageSelectionIndex]})` }}
-      >
-        {gallery.length > 1 ? (
-          <div>
-            <div
-              className="cart__item__gallery__prev"
-              onClick={() => this.prevImage(gallery, imageSelectionIndex)}
-            >
-              <img src={LightChevron} alt="" />
+      <Fade right>
+        <div
+          className="cart__item__gallery"
+          style={{ backgroundImage: `url(${gallery[imageSelectionIndex]})` }}
+        >
+          {gallery.length > 1 ? (
+            <div>
+              <div
+                className="cart__item__gallery__prev"
+                onClick={() => this.prevImage(gallery, imageSelectionIndex)}
+              >
+                <img src={LightChevron} alt="" />
+              </div>
+              <div
+                className="cart__item__gallery__next"
+                onClick={() => this.nextImage(gallery, imageSelectionIndex)}
+              >
+                <img src={LightChevron} alt="" />
+              </div>
             </div>
-            <div
-              className="cart__item__gallery__next"
-              onClick={() => this.nextImage(gallery, imageSelectionIndex)}
-            >
-              <img src={LightChevron} alt="" />
-            </div>
-          </div>
-        ) : null}
-      </div>
+          ) : null}
+        </div>
+        ;
+      </Fade>
     );
   }
 }

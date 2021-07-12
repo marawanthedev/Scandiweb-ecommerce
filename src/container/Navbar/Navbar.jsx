@@ -8,6 +8,7 @@ import RUB from "../../assets/svg/RUB.svg";
 import ChevronIcon from "../../assets/svg/chevron.svg";
 import Zoom from "react-reveal/Zoom";
 import Bounce from "react-reveal/Bounce";
+import Slide from "react-reveal/Slide";
 import { connect } from "react-redux";
 import CartIcon from "../../components/cart-icon/cart-icon.component";
 import CartDropDown from "../cart-dropdown/cart-dropdown.component";
@@ -126,50 +127,53 @@ class Navbar extends React.PureComponent {
           </div>
         </Bounce>
 
-        <div className="navbar__section navbar__section__right">
-          {this.manageCurrencySwitcher(currencies)}
+        <Slide right>
+          <div className="navbar__section navbar__section__right">
+            {this.manageCurrencySwitcher(currencies)}
 
-          {showCart ? (
-            <div>
-              <div
-                className="cart-overlay"
-                onClick={() => ToggleCartDropDown()}
-              ></div>
-              <CartDropDown itemCount={itemCount}></CartDropDown>
-            </div>
-          ) : null}
-          <div className="navbar__item navbar__section__right__item">
-            {showCurrencyswitcher ? (
-              <div
-                className="currency-overlay"
-                onClick={() => toggleShowCurrencySwitcher()}
-              ></div>
+            {showCart ? (
+              <div>
+                <div
+                  className="cart-overlay"
+                  onClick={() => ToggleCartDropDown()}
+                ></div>
+                <CartDropDown itemCount={itemCount}></CartDropDown>
+              </div>
             ) : null}
-            <img
-              src={currentCurrency.icon}
-              onClick={toggleShowCurrencySwitcher}
-              alt=""
-              className="navbar__icon navbar__icon__currency"
-            />
-            <img
-              src={ChevronIcon}
-              alt=""
-              className={`navbar__icon 
+            <div className="navbar__item navbar__section__right__item">
+              {showCurrencyswitcher ? (
+                <div
+                  className="currency-overlay"
+                  onClick={() => toggleShowCurrencySwitcher()}
+                ></div>
+              ) : null}
+              <img
+                src={currentCurrency.icon}
+                onClick={toggleShowCurrencySwitcher}
+                alt=""
+                className="navbar__icon navbar__icon__currency"
+              />
+              <img
+                src={ChevronIcon}
+                alt=""
+                className={`navbar__icon 
                           navbar__icon__small navbar__icon__chevron ${
                             showCurrencyswitcher
                               ? "navbar__icon__chevron__rotate"
                               : null
                           }`}
-              onClick={() => toggleShowCurrencySwitcher()}
-            />
+                onClick={() => toggleShowCurrencySwitcher()}
+              />
+            </div>
+            <div className="navbar__item navbar__section__right__item">
+              <CartIcon
+                itemCount={itemCount}
+                ToggleCartDropDown={ToggleCartDropDown}
+              ></CartIcon>
+            </div>
           </div>
-          <div className="navbar__item navbar__section__right__item">
-            <CartIcon
-              itemCount={itemCount}
-              ToggleCartDropDown={ToggleCartDropDown}
-            ></CartIcon>
-          </div>
-        </div>
+          ;
+        </Slide>
       </div>
     );
   }

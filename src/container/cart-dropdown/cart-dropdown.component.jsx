@@ -12,6 +12,13 @@ import {
 } from "../../redux/cart/cart.actions";
 
 class CartDropDown extends React.PureComponent {
+  uniq = cartItems => {
+    var seen = {};
+    return cartItems.filter(function(item) {
+      return seen.hasOwnProperty(item) ? false : (seen[item] = true);
+    });
+  };
+
   render() {
     const {
       cartItems,
@@ -23,6 +30,7 @@ class CartDropDown extends React.PureComponent {
       totalPrice,
       ToggleCartDropDown
     } = this.props;
+
     return (
       <Zoom>
         <div className="cart-dropdown ">

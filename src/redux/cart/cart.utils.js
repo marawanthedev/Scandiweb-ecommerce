@@ -25,8 +25,6 @@ export const compareAttributes = (previousItems, newItem) => {
 
   if (exisitingItem) {
     for (let i = 0; i < exisitingItem.attributes.length; i++) {
-      console.log(JSON.stringify(exisitingItem.attributes[i].items));
-      console.log(JSON.stringify(newItem.attributes[i].items));
       if (
         JSON.stringify(exisitingItem.attributes[i].items) ===
         JSON.stringify(newItem.attributes[i].items)
@@ -39,6 +37,35 @@ export const compareAttributes = (previousItems, newItem) => {
 
   return equality;
 };
+
+// export const compareAttributes = (previousItems, newItem) => {
+//   let equality = {
+//     status: false,
+//     indexes: []
+//   };
+
+//   const exisitingItems = previousItems.filter((prevItem, index) => {
+//     if (prevItem.name === newItem.name) {
+//       // equality.index = index;
+//       return prevItem;
+//     }
+//   });
+
+//   previousItems.forEach(prevItem => {
+//     for (let i = 0; i < prevItem.attributes.length; i++) {
+//       if (
+//         JSON.stringify(prevItem.attributes[i].items) ===
+//         JSON.stringify(newItem.attributes[i].items)
+//       ) {
+//         equality.status = true;
+//         equality.indexes.push();
+//       }
+//     }
+//   });
+
+//   return equality;
+// };
+
 export const increaseCartItemQuantityUtil = (previousItems, newItem) => {
   const targetItem = previousItems.find(
     prevItem => prevItem.cartId === newItem.cartId
@@ -82,6 +109,40 @@ export const removeCartItemUtil = (previousItems, targetItemName) => {
   return updatedCartItems;
 };
 
+export const checkAttributeDuplications = (
+  cartItems,
+  targetItem,
+  targetItemIndex
+) => {
+  let duplicationInfo = {
+    status: false,
+    index: null
+  };
+  
+  cartItems.forEach((cartItem, index) => {
+    if (
+      JSON.stringify(cartItem.attributes) ==
+      JSON.stringify(targetItem.attributes)
+    ) {
+      duplicationInfo.status = true;
+      duplicationInfo.index = index;
+      console.log(duplicationInfo);
+    }
+  });
+
+  if (duplicationInfo.status == false) {
+    cartItems.filter(item => item.name == item.name)[
+      cartItems.length - 1
+    ].attributes = targetItem.attributes;
+  } else {
+    cartItems[duplicationInfo.index].quantity =
+      cartItems[duplicationInfo.index].quantity + 1;
+    cartItems.splice(targetItemIndex, 1);
+  }
+
+  return cartItems;
+};
+
 export const addAttributeSelections = (
   cartItems,
   item,
@@ -89,8 +150,17 @@ export const addAttributeSelections = (
   attributeSelectionIndexes
 ) => {
   cartItems = JSON.parse(JSON.stringify(cartItems));
+
+  let targetItemIndex;
   const targetItem = JSON.parse(
-    JSON.stringify(cartItems.filter(_item => _item.cartId === item.cartId))
+    JSON.stringify(
+      cartItems.filter((_item, index) => {
+        if (_item.cartId === item.cartId) {
+          targetItemIndex = index;
+          return _item;
+        }
+      })
+    )
   );
 
   if (targetItem) {
@@ -108,10 +178,11 @@ export const addAttributeSelections = (
       }
     );
   }
-
-  cartItems.filter(item => item.name == item.name)[
-    cartItems.length - 1
-  ].attributes = targetItem[0].attributes;
+  cartItems = checkAttributeDuplications(
+    cartItems,
+    targetItem[0],
+    targetItemIndex
+  );
 
   return cartItems;
 };

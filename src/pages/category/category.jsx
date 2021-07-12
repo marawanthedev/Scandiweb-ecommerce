@@ -2,12 +2,7 @@ import React from "react";
 import CategoryItem from "../../components/CategoryItem/CategoryItem";
 import "./category.scss";
 import { connect } from "react-redux";
-import {
-  AddCartItem,
-  IncreaseItemQuantity,
-  DecreaseItemQuantity,
-  RemoveItem
-} from "../../redux/cart/cart.actions";
+import { AddCartItem } from "../../redux/cart/cart.actions";
 import { getProducts } from "../../redux/category/category_action";
 
 class CategoryPage extends React.PureComponent {
@@ -16,42 +11,12 @@ class CategoryPage extends React.PureComponent {
   }
 
   getProducts = (
-    categorizedProducts,
     products,
-    activeCategory,
     selectedCurrencySymbol,
     selectedCurrency,
     cartReduxCallBacks,
     CategoryItem
   ) => {
-    // if (activeCategory != "all") {
-    //   if (categorizedProducts) {
-    //     return categorizedProducts[activeCategory]
-    //       ? categorizedProducts[activeCategory].map((item, index) => (
-    //           <CategoryItem
-    //             item={item}
-    //             key={index}
-    //             cartReduxCallBacks={cartReduxCallBacks}
-    //             selectedCurrencySymbol={selectedCurrencySymbol}
-    //             selectedCurrency={selectedCurrency}
-    //           ></CategoryItem>
-    //         ))
-    //       : null;
-    //   }
-    // } else {
-    //   return products
-    //     ? products.map((item, index) => (
-    //         <CategoryItem
-    //           item={item}
-    //           key={index}
-    //           cartReduxCallBacks={cartReduxCallBacks}
-    //           selectedCurrencySymbol={selectedCurrencySymbol}
-    //           selectedCurrency={selectedCurrency}
-    //         ></CategoryItem>
-    //       ))
-    //     : null;
-    // }
-
     return products
       ? products.map((item, index) => (
           <CategoryItem
@@ -71,26 +36,17 @@ class CategoryPage extends React.PureComponent {
       selectedCurrency,
       selectedCurrencySymbol,
       AddCartItem,
-      IncreaseItemQuantity,
-      DecreaseItemQuantity,
-      RemoveItem,
-      activeCategory,
-      categorizedProducts
+      activeCategory
     } = this.props;
     const cartReduxCallBacks = {
-      AddCartItem,
-      IncreaseItemQuantity,
-      DecreaseItemQuantity,
-      RemoveItem
+      AddCartItem
     };
     return (
       <div className="categoryPage">
         <div className="categoryPage__header">{activeCategory}</div>
         <div className="categoryPage__items-container">
           {this.getProducts(
-            categorizedProducts,
             products,
-            activeCategory,
             selectedCurrencySymbol,
             selectedCurrency,
             cartReduxCallBacks,
@@ -111,9 +67,6 @@ const mapStatToProps = ({ categoryReducer, currencyReducer }) => ({
 
 const mapDispatchToProps = dispatch => ({
   AddCartItem: cartItem => dispatch(AddCartItem(cartItem)),
-  IncreaseItemQuantity: () => dispatch(IncreaseItemQuantity()),
-  DecreaseItemQuantity: () => dispatch(DecreaseItemQuantity()),
-  RemoveItem: () => dispatch(RemoveItem()),
   getProducts: () => dispatch(getProducts())
 });
 

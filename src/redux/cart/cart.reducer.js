@@ -36,7 +36,7 @@ const cartReducer = (state = INITIAL_STATE, action) => {
     case CartActionTypes.ADD_ATTRIBUTE_SELECTION_INDEX: {
       return {
         ...state,
-        cartItems: addAttributeSelections(
+          cartItems: addAttributeSelections(
           state.cartItems,
           action.item,
           action.attributeIndex,
@@ -44,12 +44,7 @@ const cartReducer = (state = INITIAL_STATE, action) => {
         )
       };
     }
-    case CartActionTypes.CHECK_ATTRIBUTE_SELETION_DUPLICATION: {
-      return {
-        ...state,
-        carts: compareAttributes(state.cartItems, action.newItem)
-      };
-    }
+
     case CartActionTypes.DECREASE_ITEM_QUANTITY: {
       return {
         ...state,

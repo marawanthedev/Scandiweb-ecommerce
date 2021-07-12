@@ -4,9 +4,15 @@ export const ToggleCartDropDown = () => ({
   payload: null
 });
 
-export const AddCartItem = cartItem => ({
+export const AddCartItem = (
+  cartItem,
+  attributeIndex,
+  attributeSelectionIndex
+) => ({
   type: CartActionTypes.ADD_CART_ITEM,
-  payload: cartItem
+  payload: cartItem,
+  attributeIndex,
+  attributeSelectionIndex
 });
 
 export const addAttributeSelectionsIndex = (
@@ -18,11 +24,6 @@ export const addAttributeSelectionsIndex = (
   attributeIndex,
   item,
   attributeSelectionIndex
-});
-
-export const checkAttributeSelectionDuplication = newItem => ({
-  type: CartActionTypes.CHECK_ATTRIBUTE_SELETION_DUPLICATION,
-  newItem
 });
 
 export const IncreaseItemQuantity = item => ({

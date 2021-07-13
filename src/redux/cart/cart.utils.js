@@ -67,12 +67,16 @@ export const omitAttributeDuplications = (
   };
 
   cartItems.forEach((cartItem, index) => {
-    if (
-      JSON.stringify(cartItem.attributes) ==
-      JSON.stringify(targetItem.attributes)
-    ) {
-      duplicationInfo.status = true;
-      duplicationInfo.index = index;
+    if (cartItem.name == targetItem.name) {
+      console.log(cartItem.name);
+      console.log(targetItem.name);
+      if (
+        JSON.stringify(cartItem.attributes) ==
+        JSON.stringify(targetItem.attributes)
+      ) {
+        duplicationInfo.status = true;
+        duplicationInfo.index = index;
+      }
     }
   });
 

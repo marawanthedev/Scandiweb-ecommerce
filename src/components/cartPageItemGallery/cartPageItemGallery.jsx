@@ -1,34 +1,34 @@
-import React from "react";
-import LightChevron from "../../assets/svg/lightChevron.svg";
-import "./cartPageItemGallery.scss";
-import Fade from "react-reveal/Fade";
+import React from 'react'
+import LightChevron from '../../assets/svg/lightChevron.svg'
+import './cartPageItemGallery.scss'
+import Fade from 'react-reveal/Fade'
 
 class CartPageItemGallery extends React.PureComponent {
   constructor(props) {
-    super(props);
+    super(props)
     this.state = {
-      imageSelectionIndex: 0
-    };
+      imageSelectionIndex: 0,
+    }
   }
 
   nextImage = (gallery, imageSelectionIndex) => {
     if (imageSelectionIndex < gallery.length - 1) {
-      this.setState({ imageSelectionIndex: imageSelectionIndex + 1 });
+      this.setState({ imageSelectionIndex: imageSelectionIndex + 1 })
     } else {
-      this.setState({ imageSelectionIndex: 0 });
+      this.setState({ imageSelectionIndex: 0 })
     }
-  };
+  }
   prevImage = (gallery, imageSelectionIndex) => {
     if (imageSelectionIndex > 0) {
-      this.setState({ imageSelectionIndex: imageSelectionIndex - 1 });
+      this.setState({ imageSelectionIndex: imageSelectionIndex - 1 })
     } else {
-      this.setState({ imageSelectionIndex: gallery.length - 1 });
+      this.setState({ imageSelectionIndex: gallery.length - 1 })
     }
-  };
+  }
 
   render() {
-    const { gallery } = this.props;
-    const { imageSelectionIndex } = this.state;
+    const { gallery } = this.props
+    const { imageSelectionIndex } = this.state
 
     return (
       <Fade right>
@@ -55,8 +55,8 @@ class CartPageItemGallery extends React.PureComponent {
         </div>
         ;
       </Fade>
-    );
+    )
   }
 }
 
-export default CartPageItemGallery;
+export default CartPageItemGallery

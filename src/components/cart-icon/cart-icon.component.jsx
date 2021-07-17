@@ -7,7 +7,7 @@ class CartIcon extends React.PureComponent {
     const { ToggleCartDropDown, itemCount } = this.props;
     return (
       <div className={`cart-icon`} onClick={() => ToggleCartDropDown()}>
-        <ShoppingIcon className="shopping-icon"></ShoppingIcon>
+        <ShoppingIcon className="shopping-icon" />
         {itemCount !== 0 ? (
           <div className="item-count-circle">
             <span className="item-count ">{itemCount}</span>

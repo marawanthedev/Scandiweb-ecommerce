@@ -1,13 +1,13 @@
-import "./cart-drop-down-items.styles.scss";
-import Plus from "../../assets/svg/Plus.svg";
-import Minus from "../../assets/svg/Minus.svg";
-import IconButton from "../IconButton/IconButton";
-import React from "react";
-import ItemAttribues from "../ItemAttributes/ItemAttribues";
-import { Link } from "react-router-dom";
+import './cart-drop-down-items.styles.scss'
+import Plus from '../../assets/svg/Plus.svg'
+import Minus from '../../assets/svg/Minus.svg'
+import IconButton from '../IconButton/IconButton'
+import React from 'react'
+import ItemAttribues from '../ItemAttributes/ItemAttribues'
+import { Link } from 'react-router-dom'
 
 class CartItem extends React.PureComponent {
-  render() {
+  render () {
     const {
       gallery,
       name,
@@ -20,50 +20,51 @@ class CartItem extends React.PureComponent {
       attributes,
       item,
       ToggleCartDropDownCallBack
-    } = this.props;
+    } = this.props
 
     return (
-      <div className="cart-item" key={name}>
-        <div className="cart-item__content">
-          <div className="cart-item__content__main">
-            <div className="cart-item__content__main__text">
-              <div className="cart-item__content__header">{name}</div>
-              <div className="cart-item__content__price">
+      <div className='cart-item' key={name}>
+        <div className='cart-item__content'>
+          <div className='cart-item__content__main'>
+            <div className='cart-item__content__main__text'>
+              <div className='cart-item__content__header'>{name}</div>
+              <div className='cart-item__content__price'>
                 {selectedCurrencySymbol}
                 {
                   prices.filter(
                     price => price.currency === selectedCurrency
-                  )[0]["amount"]
+                  )[0]['amount']
                 }
               </div>
             </div>
-            <div className="cart-item__content__attributes-container">
-              {attributes.map(attribute => {
+            <div className='cart-item__content__attributes-container'>
+              {attributes.map((attribute, index) => {
                 const attributeSelection = attribute.items.filter(
                   item => item.selected === true
-                )[0];
+                )[0]
                 if (attributeSelection) {
                   return (
-                    <div className="cart-item__content__attribute-buttons-container">
+                    <div className='cart-item__content__attribute-buttons-container'>
                       <ItemAttribues
                         attribute={attribute}
                         isMini={true}
-                      ></ItemAttribues>
+                        key={index}
+                      />
                     </div>
-                  );
+                  )
                 }
-                return null;
+                return null
               })}
             </div>
           </div>
 
-          <div className="cart-item__content__quantity-buttons-container">
+          <div className='cart-item__content__quantity-buttons-container'>
             <IconButton
               callBack={IncreaseItemQuantity}
               Icon={Plus}
               callBackParam={item}
             ></IconButton>
-            <span className="cart-item__content__quantity">{quantity}</span>
+            <span className='cart-item__content__quantity'>{quantity}</span>
             <IconButton
               callBack={DecreaseItemQuantity}
               Icon={Minus}
@@ -73,19 +74,19 @@ class CartItem extends React.PureComponent {
         </div>
 
         <Link
-          className="cart-item__img"
+          className='cart-item__img'
           onClick={() => ToggleCartDropDownCallBack()}
           style={{ backgroundImage: `url(${gallery[0]})` }}
           to={{
-            pathname: "/product_display_page",
+            pathname: '/product_display_page',
             state: {
               item: item
             }
           }}
         ></Link>
       </div>
-    );
+    )
   }
 }
 
-export default CartItem;
+export default CartItem

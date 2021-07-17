@@ -27,9 +27,21 @@ export const GET_PORDUCTS = gql`
   }
 `;
 
-export const GET_CLOTHES_PRODUCTS = gql`
+export const GET_CURRENCIES =
+  gql`
   query {
-    category(input: { title: "clothes" }) {
+    category {
+      products {
+        prices {
+          currency
+        }
+      }
+    }
+  }`
+
+export const GET_PRODUCTS_Category = gql`
+  query($title:String!){
+    category(input: { title:$title}) {
       name
       products {
         name

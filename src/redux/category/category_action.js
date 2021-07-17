@@ -1,16 +1,17 @@
 import client from "../../graphQl/server";
 import {
   GET_PORDUCTS,
-  GET_CLOTHES_PRODUCTS,
-  GET_TECH_PRODUCTS
+  GET_PRODUCTS_Category
+
 } from "../../graphQl/Category/category_queries";
 import { CategoryActionTypes } from "./category_types";
 
-export const getProducts = () => {
+export const getAllProducts = () => {
   return dispatch => {
     client
       .query({
-        query: GET_PORDUCTS
+        query: GET_PORDUCTS,
+
       })
       .then(result => {
         dispatch(productsLoaded(result.data));
@@ -19,26 +20,18 @@ export const getProducts = () => {
 };
 
 export const updateCategory = category => {
-  let queryName;
-  switch (category) {
-    case "clothes":
-      queryName = GET_CLOTHES_PRODUCTS;
 
-      break;
-    case "tech":
-      queryName = GET_TECH_PRODUCTS;
-      break;
-
-    case "all":
-      queryName = GET_PORDUCTS;
-
-    default:
-      break;
+  if (category === "all") {
+    return getAllProducts();
   }
+
   return dispatch => {
     client
       .query({
-        query: queryName
+        query: GET_PRODUCTS_Category,
+        variables: {
+          title: category
+        }
       })
       .then(result => {
         dispatch(

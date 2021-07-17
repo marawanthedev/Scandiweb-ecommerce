@@ -1,10 +1,10 @@
 import { CategoryActionTypes } from "./category_types";
-import { divideCategories } from "./category.util";
+import { divideCategories, extractCurrencies } from "./category.util";
 const initState = {
   products: null,
-  categorizedProducts: null,
   activeCategory: "all",
-  categories: []
+  categories: [],
+  currencies: []
 };
 const categoryReducer = (state = initState, action) => {
   switch (action.type) {
@@ -13,9 +13,10 @@ const categoryReducer = (state = initState, action) => {
         ...state,
         products: action.payload.category.products,
         categories:
-          state.categories.length == 0
+          state.categories.length === 0
             ? divideCategories(action.payload.category.products)
-            : state.categories
+            : state.categories,
+        currencies: extractCurrencies(action.payload.category.products[0])
       };
     }
     case CategoryActionTypes.UPDATE_CATEGORY_SELECTION: {
@@ -24,8 +25,12 @@ const categoryReducer = (state = initState, action) => {
         activeCategory: action.category
       };
     }
+    default: {
+      return {
+        ...state
+      }
+    }
   }
-  return state;
 };
 
 export default categoryReducer;

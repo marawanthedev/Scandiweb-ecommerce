@@ -9,11 +9,7 @@ class IconButton extends React.PureComponent {
         <div
           className="cart-item__content__btn__icon"
           style={{
-            backgroundImage: `url(${Icon})`,
-            backgroundPosition: "center",
-            backgroundSize: "cover",
-            width: "100%",
-            height: "100%"
+            backgroundImage: `url(${Icon})`
           }}
         ></div>
       </button>

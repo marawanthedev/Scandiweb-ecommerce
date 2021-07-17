@@ -72,6 +72,10 @@
     width: 100%;
     padding: 0 1.5rem;
 
+    &__link {
+      text-decoration: none;
+      width: calc((100% / 2) - 1rem);
+    }
     &__button {
       width: calc((100% / 2) - 1rem);
       height: 4.3rem;
@@ -88,6 +92,7 @@
         border: 1px solid rgba(29, 31, 34, 1);
         color: black;
         background-color: white;
+        width: 100%;
       }
 
       &__checkout {

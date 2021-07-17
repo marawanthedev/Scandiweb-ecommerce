@@ -1,19 +1,19 @@
-import React from "react";
-import Fade from "react-reveal/Fade";
-import "./CurrencySwitcher.scss";
+import React from 'react'
+import Fade from 'react-reveal/Fade'
+import './CurrencySwitcher.scss'
 
 class CurrencySwitcher extends React.PureComponent {
-  render() {
-    const { currencies, currencySelectionUpdateCallBack } = this.props;
+  render () {
+    const { currencies, currencySelectionUpdateCallBack } = this.props
 
     return (
       <Fade>
-        <div className="currency-switcher-container">
+        <div className='currency-switcher-container'>
           {currencies.map((currency, index) => {
             return (
               <div
                 key={index}
-                className="currency-switcher-container__item"
+                className='currency-switcher-container__item'
                 onClick={() =>
                   currencySelectionUpdateCallBack({
                     name: currency.text,
@@ -22,20 +22,20 @@ class CurrencySwitcher extends React.PureComponent {
                 }
               >
                 <img
-                  src={currency.icon}
-                  className="currency-switcher-container__item__icon"
-                  alt="currency"
-                ></img>
-                <span className="currency-switcher-container__item__text">
-                  {currency.text}
+                  src={currency.data.icon}
+                  className='currency-switcher-container__item__icon'
+                  alt='currency'
+                />
+                <span className='currency-switcher-container__item__text'>
+                  {currency.name}
                 </span>
               </div>
-            );
+            )
           })}
         </div>
       </Fade>
-    );
+    )
   }
 }
 
-export default CurrencySwitcher;
+export default CurrencySwitcher

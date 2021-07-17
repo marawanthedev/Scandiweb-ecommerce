@@ -65,13 +65,10 @@ export const omitAttributeDuplications = (
     status: false,
     index: null
   };
-
   cartItems.forEach((cartItem, index) => {
-    if (cartItem.name == targetItem.name) {
-      console.log(cartItem.name);
-      console.log(targetItem.name);
+    if (cartItem.name === targetItem.name) {
       if (
-        JSON.stringify(cartItem.attributes) ==
+        JSON.stringify(cartItem.attributes) ===
         JSON.stringify(targetItem.attributes)
       ) {
         duplicationInfo.status = true;
@@ -80,10 +77,17 @@ export const omitAttributeDuplications = (
     }
   });
 
-  if (duplicationInfo.status == false) {
-    cartItems.filter(item => item.name == item.name)[
-      cartItems.length - 1
-    ].attributes = targetItem.attributes;
+  if (duplicationInfo.status === false) {
+    if (cartItems[cartItems.length - 1].attributes) {
+
+      if (cartItems.lastIndexOf(targetItem.name) !== -1) {
+        cartItems[cartItems.lastIndexOf(targetItem.name)].attributes = targetItem.attributes;
+      }
+      else {
+        cartItems[cartItems.length - 1].attributes = targetItem.attributes;
+      }
+
+    }
   } else {
     cartItems[duplicationInfo.index].quantity =
       cartItems[duplicationInfo.index].quantity + 1;
@@ -109,6 +113,9 @@ export const addAttributeSelections = (
           targetItemIndex = index;
           return _item;
         }
+        else {
+          return null
+        }
       })
     )
   );
@@ -117,7 +124,7 @@ export const addAttributeSelections = (
     targetItem.attributes.forEach((attribute, outerIndex) => {
       if (attributeIndexes.indexOf(outerIndex) !== -1) {
         attribute.items.forEach((item, innerIndex) => {
-          if (innerIndex == attributeSelectionIndexes[outerIndex]) {
+          if (innerIndex === attributeSelectionIndexes[outerIndex]) {
             item.selected = true;
           } else {
             item.selected = false;

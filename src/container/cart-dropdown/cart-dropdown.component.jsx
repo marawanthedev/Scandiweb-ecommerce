@@ -1,24 +1,17 @@
-import React from "react";
-import "./cart-dropdown.styles.scss";
-import { connect } from "react-redux";
-import CartItem from "../../components/cart-drop-down-items/cart-drop-down-items.component";
-import { Link } from "react-router-dom";
-import Zoom from "react-reveal/Zoom";
+import React from 'react'
+import './cart-dropdown.styles.scss'
+import { connect } from 'react-redux'
+import CartItem from '../../components/cart-drop-down-items/cart-drop-down-items.component'
+import { Link } from 'react-router-dom'
+import Zoom from 'react-reveal/Zoom'
 
 import {
   DecreaseItemQuantity,
   IncreaseItemQuantity,
-  ToggleCartDropDown
-} from "../../redux/cart/cart.actions";
+  ToggleCartDropDown,
+} from '../../redux/cart/cart.actions'
 
 class CartDropDown extends React.PureComponent {
-  uniq = cartItems => {
-    var seen = {};
-    return cartItems.filter(function(item) {
-      return seen.hasOwnProperty(item) ? false : (seen[item] = true);
-    });
-  };
-
   render() {
     const {
       cartItems,
@@ -28,14 +21,14 @@ class CartDropDown extends React.PureComponent {
       selectedCurrencySymbol,
       itemCount,
       totalPrice,
-      ToggleCartDropDown
-    } = this.props;
+      ToggleCartDropDown,
+    } = this.props
 
     return (
       <Zoom>
         <div className="cart-dropdown ">
           <div className="cart-dropdown__items-count-container">
-            My Bag.{" "}
+            My Bag.{' '}
             <span className="cart-dropdown__items-count">
               {itemCount} items
             </span>
@@ -53,8 +46,8 @@ class CartDropDown extends React.PureComponent {
                       IncreaseItemQuantity={IncreaseItemQuantity}
                       {...cartData}
                       item={cartData}
-                    ></CartItem>
-                  );
+                    />
+                  )
                 })
               : null}
           </ul>
@@ -67,17 +60,11 @@ class CartDropDown extends React.PureComponent {
           </div>
           <div className="buttons-container">
             <Link
+              className="buttons-container__link"
               to="/cart"
               onClick={() => ToggleCartDropDown()}
-              style={{
-                textDecoration: "none",
-                width: "calc((100% / 2) - 1rem)"
-              }}
             >
-              <button
-                className="buttons-container__button buttons-container__button__viewbag"
-                style={{ width: "100%" }}
-              >
+              <button className="buttons-container__button buttons-container__button__viewbag">
                 View Bag
               </button>
             </Link>
@@ -87,7 +74,7 @@ class CartDropDown extends React.PureComponent {
           </div>
         </div>
       </Zoom>
-    );
+    )
   }
 }
 
@@ -103,17 +90,17 @@ const mapStateToProps = ({ cartReducer, currencyReducer }) => ({
             accumaltedPrice +
             cartItem.quantity *
               cartItem.prices.filter(
-                price => price.currency == currencyReducer.selectedCurrency
-              )[0]["amount"],
+                (price) => price.currency === currencyReducer.selectedCurrency
+              )[0]['amount'],
           0
         )
-      : 0
-});
+      : 0,
+})
 
-const mapDispatchToProps = dispatch => ({
-  DecreaseItemQuantity: itemName => dispatch(DecreaseItemQuantity(itemName)),
-  IncreaseItemQuantity: itemName => dispatch(IncreaseItemQuantity(itemName)),
-  ToggleCartDropDown: () => dispatch(ToggleCartDropDown())
-});
+const mapDispatchToProps = (dispatch) => ({
+  DecreaseItemQuantity: (itemName) => dispatch(DecreaseItemQuantity(itemName)),
+  IncreaseItemQuantity: (itemName) => dispatch(IncreaseItemQuantity(itemName)),
+  ToggleCartDropDown: () => dispatch(ToggleCartDropDown()),
+})
 
-export default connect(mapStateToProps, mapDispatchToProps)(CartDropDown);
+export default connect(mapStateToProps, mapDispatchToProps)(CartDropDown)

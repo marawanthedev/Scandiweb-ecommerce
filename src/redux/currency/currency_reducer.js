@@ -21,9 +21,12 @@ const currencyReducer = (state = initState, action) => {
         selectedCurrencySymbol: action.newCurrencyInfo.symbol
       };
     }
+    default: {
+      return {
+        ...state
+      }
+    }
   }
-
-  return state;
 };
 
 export default currencyReducer;

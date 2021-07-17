@@ -252,6 +252,10 @@
       flex-direction: column;
       overflow-y: hidden;
 
+      &__item {
+        margin: 1rem 0;
+      }
+
       @media only screen and (max-width: 930px) {
         min-height: 5rem;
         max-height: 45rem;

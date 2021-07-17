@@ -184,17 +184,19 @@ class ProductDisplayPage extends React.PureComponent {
           </div>
           <div className='productDisplayPage__product__info__item-attributes__container'>
             {item.attributes.map((attribute, index) => (
-              <ItemAttribues
-                key={index}
-                attribute={attribute}
-                attributeIndex={index}
-                attributeSelectionIndex={
-                  attributeSelectionIndex[attributeSelectionIndex.length - 1]
-                }
-                toggleButtons={true}
-                item={item}
-                onClickCallBack={this.handleAttributeSelection}
-              />
+              <div className='productDisplayPage__product__info__item-attributes__container__item'>
+                <ItemAttribues
+                  key={index}
+                  attribute={attribute}
+                  attributeIndex={index}
+                  attributeSelectionIndex={
+                    attributeSelectionIndex[attributeSelectionIndex.length - 1]
+                  }
+                  toggleButtons={true}
+                  item={item}
+                  onClickCallBack={this.handleAttributeSelection}
+                />
+              </div>
             ))}
           </div>
           <div className='productDisplayPage__product__info__price'>

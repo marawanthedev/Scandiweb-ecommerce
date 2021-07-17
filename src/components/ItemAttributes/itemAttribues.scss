@@ -1,8 +1,6 @@
 .item-attribute {
   width: 100%;
   font-size: 1rem;
-  margin: 0.5rem 0;
-  padding-bottom: 0.8em;
 
   &__name {
     font-size: 1.8em;
@@ -19,7 +17,6 @@
     align-items: center;
     overflow-x: auto;
     scroll-behavior: smooth;
-    padding-bottom: 0.5em;
 
     &::-webkit-scrollbar {
       top: 12rem;

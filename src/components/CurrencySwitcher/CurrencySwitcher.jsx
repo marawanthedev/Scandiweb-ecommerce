@@ -16,8 +16,8 @@ class CurrencySwitcher extends React.PureComponent {
                 className='currency-switcher-container__item'
                 onClick={() =>
                   currencySelectionUpdateCallBack({
-                    name: currency.text,
-                    symbol: currency.symbol
+                    name: currency.name,
+                    symbol: currency.data.symbol
                   })
                 }
               >

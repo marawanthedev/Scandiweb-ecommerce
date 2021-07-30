@@ -55,10 +55,11 @@ class CategoryItem extends React.PureComponent {
             <div className='category-item__text__description'>{name}</div>
             <div className='category-item__text__price'>
               {selectedCurrencySymbol}
+             
               {
-                prices.filter(price => price.currency === selectedCurrency)[0][
+                prices?prices.filter(price => price.currency === selectedCurrency)[0][
                   'amount'
-                ]
+                ]:null
               }
             </div>
           </div>
